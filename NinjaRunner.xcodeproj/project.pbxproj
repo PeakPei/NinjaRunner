@@ -16,6 +16,7 @@
 		06493E441A06767A005C3017 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06493E431A06767A005C3017 /* Images.xcassets */; };
 		06493E471A06767A005C3017 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06493E451A06767A005C3017 /* LaunchScreen.xib */; };
 		06493E531A06767A005C3017 /* NinjaRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 06493E521A06767A005C3017 /* NinjaRunnerTests.m */; };
+		244975481A06A31800821BD7 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 244975471A06A31800821BD7 /* Sprites.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		06493E4C1A06767A005C3017 /* NinjaRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaRunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06493E511A06767A005C3017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06493E521A06767A005C3017 /* NinjaRunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NinjaRunnerTests.m; sourceTree = "<group>"; };
+		244975471A06A31800821BD7 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		06493E301A06767A005C3017 /* NinjaRunner */ = {
 			isa = PBXGroup;
 			children = (
+				244975471A06A31800821BD7 /* Sprites.atlas */,
 				06493E351A06767A005C3017 /* AppDelegate.h */,
 				06493E361A06767A005C3017 /* AppDelegate.m */,
 				06493E381A06767A005C3017 /* GameScene.h */,
@@ -211,6 +214,7 @@
 				06493E441A06767A005C3017 /* Images.xcassets in Resources */,
 				06493E3C1A06767A005C3017 /* GameScene.sks in Resources */,
 				06493E421A06767A005C3017 /* Main.storyboard in Resources */,
+				244975481A06A31800821BD7 /* Sprites.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +428,7 @@
 				06493E581A06767A005C3017 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06493E591A06767A005C3017 /* Build configuration list for PBXNativeTarget "NinjaRunnerTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +437,7 @@
 				06493E5B1A06767A005C3017 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
