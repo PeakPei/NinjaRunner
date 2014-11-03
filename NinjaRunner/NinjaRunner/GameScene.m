@@ -10,7 +10,7 @@
 #import "NinjaNode.h"
 #import "DragonNode.h"
 
-static const float BG_VELOCITY = 100.0;
+static const float BG_VELOCITY = 50.0;
 
 static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b)
 {
@@ -117,7 +117,6 @@ NSTimeInterval _lastMissileAdded;
     
     
     [self moveBg];
-    //[self moveObstacle];
 }
 
 @end
