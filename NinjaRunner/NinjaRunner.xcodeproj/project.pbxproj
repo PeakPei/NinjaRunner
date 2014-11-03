@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2421CADE1A07A989000DB144 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CADD1A07A989000DB144 /* main.m */; };
+		2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE01A07A989000DB144 /* AppDelegate.m */; };
+		2421CAE41A07A989000DB144 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE31A07A989000DB144 /* GameScene.m */; };
+		2421CAE61A07A989000DB144 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAE51A07A989000DB144 /* GameScene.sks */; };
+		2421CAE91A07A989000DB144 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE81A07A989000DB144 /* GameViewController.m */; };
+		2421CAEC1A07A989000DB144 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAEA1A07A989000DB144 /* Main.storyboard */; };
+		2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAED1A07A989000DB144 /* Images.xcassets */; };
+		2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAEF1A07A989000DB144 /* LaunchScreen.xib */; };
+		2421CAFD1A07A989000DB144 /* NinjaRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */; };
+		24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 24968B9E1A07B25B00E679C5 /* Sprites.atlas */; };
+		24968BA21A07B39300E679C5 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA11A07B39300E679C5 /* NinjaNode.m */; };
+		24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA41A07B8D600E679C5 /* DragonNode.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2421CAF71A07A989000DB144 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2421CAD01A07A989000DB144 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2421CAD71A07A989000DB144;
+			remoteInfo = NinjaRunner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2421CAD81A07A989000DB144 /* NinjaRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2421CADC1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2421CADD1A07A989000DB144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2421CADF1A07A989000DB144 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2421CAE01A07A989000DB144 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2421CAE21A07A989000DB144 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		2421CAE31A07A989000DB144 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		2421CAE51A07A989000DB144 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2421CAE71A07A989000DB144 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		2421CAE81A07A989000DB144 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		2421CAEB1A07A989000DB144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2421CAED1A07A989000DB144 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2421CAF01A07A989000DB144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		2421CAF61A07A989000DB144 /* NinjaRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaRunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2421CAFB1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NinjaRunnerTests.m; sourceTree = "<group>"; };
+		24968B9E1A07B25B00E679C5 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
+		24968BA01A07B39300E679C5 /* NinjaNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NinjaNode.h; sourceTree = "<group>"; };
+		24968BA11A07B39300E679C5 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
+		24968BA31A07B8D600E679C5 /* DragonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragonNode.h; sourceTree = "<group>"; };
+		24968BA41A07B8D600E679C5 /* DragonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragonNode.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2421CAD51A07A989000DB144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2421CAF31A07A989000DB144 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2421CACF1A07A989000DB144 = {
+			isa = PBXGroup;
+			children = (
+				2421CADA1A07A989000DB144 /* NinjaRunner */,
+				2421CAF91A07A989000DB144 /* NinjaRunnerTests */,
+				2421CAD91A07A989000DB144 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2421CAD91A07A989000DB144 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2421CAD81A07A989000DB144 /* NinjaRunner.app */,
+				2421CAF61A07A989000DB144 /* NinjaRunnerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2421CADA1A07A989000DB144 /* NinjaRunner */ = {
+			isa = PBXGroup;
+			children = (
+				2421CAE21A07A989000DB144 /* GameScene.h */,
+				2421CAE31A07A989000DB144 /* GameScene.m */,
+				24968BA31A07B8D600E679C5 /* DragonNode.h */,
+				24968BA41A07B8D600E679C5 /* DragonNode.m */,
+				24968BA01A07B39300E679C5 /* NinjaNode.h */,
+				24968BA11A07B39300E679C5 /* NinjaNode.m */,
+				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
+				2421CAED1A07A989000DB144 /* Images.xcassets */,
+				2421CADB1A07A989000DB144 /* Supporting Files */,
+			);
+			path = NinjaRunner;
+			sourceTree = "<group>";
+		};
+		2421CADB1A07A989000DB144 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2421CAEF1A07A989000DB144 /* LaunchScreen.xib */,
+				2421CADF1A07A989000DB144 /* AppDelegate.h */,
+				2421CAE01A07A989000DB144 /* AppDelegate.m */,
+				2421CAE51A07A989000DB144 /* GameScene.sks */,
+				2421CAE71A07A989000DB144 /* GameViewController.h */,
+				2421CAE81A07A989000DB144 /* GameViewController.m */,
+				2421CAEA1A07A989000DB144 /* Main.storyboard */,
+				2421CADC1A07A989000DB144 /* Info.plist */,
+				2421CADD1A07A989000DB144 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2421CAF91A07A989000DB144 /* NinjaRunnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */,
+				2421CAFA1A07A989000DB144 /* Supporting Files */,
+			);
+			path = NinjaRunnerTests;
+			sourceTree = "<group>";
+		};
+		2421CAFA1A07A989000DB144 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2421CAFB1A07A989000DB144 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2421CAD71A07A989000DB144 /* NinjaRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2421CB001A07A989000DB144 /* Build configuration list for PBXNativeTarget "NinjaRunner" */;
+			buildPhases = (
+				2421CAD41A07A989000DB144 /* Sources */,
+				2421CAD51A07A989000DB144 /* Frameworks */,
+				2421CAD61A07A989000DB144 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NinjaRunner;
+			productName = NinjaRunner;
+			productReference = 2421CAD81A07A989000DB144 /* NinjaRunner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2421CAF51A07A989000DB144 /* NinjaRunnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2421CB031A07A989000DB144 /* Build configuration list for PBXNativeTarget "NinjaRunnerTests" */;
+			buildPhases = (
+				2421CAF21A07A989000DB144 /* Sources */,
+				2421CAF31A07A989000DB144 /* Frameworks */,
+				2421CAF41A07A989000DB144 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2421CAF81A07A989000DB144 /* PBXTargetDependency */,
+			);
+			name = NinjaRunnerTests;
+			productName = NinjaRunnerTests;
+			productReference = 2421CAF61A07A989000DB144 /* NinjaRunnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2421CAD01A07A989000DB144 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = TeamOnaga;
+				TargetAttributes = {
+					2421CAD71A07A989000DB144 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					2421CAF51A07A989000DB144 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 2421CAD71A07A989000DB144;
+					};
+				};
+			};
+			buildConfigurationList = 2421CAD31A07A989000DB144 /* Build configuration list for PBXProject "NinjaRunner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2421CACF1A07A989000DB144;
+			productRefGroup = 2421CAD91A07A989000DB144 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2421CAD71A07A989000DB144 /* NinjaRunner */,
+				2421CAF51A07A989000DB144 /* NinjaRunnerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2421CAD61A07A989000DB144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */,
+				2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */,
+				2421CAE61A07A989000DB144 /* GameScene.sks in Resources */,
+				2421CAEC1A07A989000DB144 /* Main.storyboard in Resources */,
+				24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2421CAF41A07A989000DB144 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2421CAD41A07A989000DB144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24968BA21A07B39300E679C5 /* NinjaNode.m in Sources */,
+				2421CAE91A07A989000DB144 /* GameViewController.m in Sources */,
+				2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */,
+				2421CAE41A07A989000DB144 /* GameScene.m in Sources */,
+				24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */,
+				2421CADE1A07A989000DB144 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2421CAF21A07A989000DB144 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2421CAFD1A07A989000DB144 /* NinjaRunnerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2421CAF81A07A989000DB144 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2421CAD71A07A989000DB144 /* NinjaRunner */;
+			targetProxy = 2421CAF71A07A989000DB144 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2421CAEA1A07A989000DB144 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2421CAEB1A07A989000DB144 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2421CAEF1A07A989000DB144 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2421CAF01A07A989000DB144 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2421CAFE1A07A989000DB144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2421CAFF1A07A989000DB144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2421CB011A07A989000DB144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NinjaRunner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2421CB021A07A989000DB144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NinjaRunner/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2421CB041A07A989000DB144 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NinjaRunnerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NinjaRunner.app/NinjaRunner";
+			};
+			name = Debug;
+		};
+		2421CB051A07A989000DB144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = NinjaRunnerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NinjaRunner.app/NinjaRunner";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2421CAD31A07A989000DB144 /* Build configuration list for PBXProject "NinjaRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2421CAFE1A07A989000DB144 /* Debug */,
+				2421CAFF1A07A989000DB144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2421CB001A07A989000DB144 /* Build configuration list for PBXNativeTarget "NinjaRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2421CB011A07A989000DB144 /* Debug */,
+				2421CB021A07A989000DB144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2421CB031A07A989000DB144 /* Build configuration list for PBXNativeTarget "NinjaRunnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2421CB041A07A989000DB144 /* Debug */,
+				2421CB051A07A989000DB144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2421CAD01A07A989000DB144 /* Project object */;
+}
