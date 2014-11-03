@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 06342ABF1A081BD0007D2256 /* NinjaNode.m */; };
 		2421CADE1A07A989000DB144 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CADD1A07A989000DB144 /* main.m */; };
 		2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE01A07A989000DB144 /* AppDelegate.m */; };
 		2421CAE41A07A989000DB144 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE31A07A989000DB144 /* GameScene.m */; };
@@ -17,7 +18,6 @@
 		2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2421CAEF1A07A989000DB144 /* LaunchScreen.xib */; };
 		2421CAFD1A07A989000DB144 /* NinjaRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */; };
 		24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 24968B9E1A07B25B00E679C5 /* Sprites.atlas */; };
-		24968BA21A07B39300E679C5 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA11A07B39300E679C5 /* NinjaNode.m */; };
 		24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA41A07B8D600E679C5 /* DragonNode.m */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06342ABF1A081BD0007D2256 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
 		2421CAD81A07A989000DB144 /* NinjaRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2421CADC1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2421CADD1A07A989000DB144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NinjaRunnerTests.m; sourceTree = "<group>"; };
 		24968B9E1A07B25B00E679C5 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		24968BA01A07B39300E679C5 /* NinjaNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NinjaNode.h; sourceTree = "<group>"; };
-		24968BA11A07B39300E679C5 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
 		24968BA31A07B8D600E679C5 /* DragonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragonNode.h; sourceTree = "<group>"; };
 		24968BA41A07B8D600E679C5 /* DragonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragonNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,7 +99,7 @@
 				24968BA31A07B8D600E679C5 /* DragonNode.h */,
 				24968BA41A07B8D600E679C5 /* DragonNode.m */,
 				24968BA01A07B39300E679C5 /* NinjaNode.h */,
-				24968BA11A07B39300E679C5 /* NinjaNode.m */,
+				06342ABF1A081BD0007D2256 /* NinjaNode.m */,
 				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
 				2421CAED1A07A989000DB144 /* Images.xcassets */,
 				2421CADB1A07A989000DB144 /* Supporting Files */,
@@ -242,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24968BA21A07B39300E679C5 /* NinjaNode.m in Sources */,
+				06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */,
 				2421CAE91A07A989000DB144 /* GameViewController.m in Sources */,
 				2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */,
 				2421CAE41A07A989000DB144 /* GameScene.m in Sources */,
