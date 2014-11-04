@@ -36,6 +36,7 @@ NSTimeInterval _dt;
 NSTimeInterval _lastMissileAdded;
 BOOL _jumped = NO;
 int _counter = 0;
+DragonNode *dragon;
 
 
 -(void)didMoveToView:(SKView *)view {
@@ -60,7 +61,7 @@ int _counter = 0;
     factor = 1.0;
     //[self performJumpingAnimation];
     
-    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(450, 300)];
+    dragon = [DragonNode dragonWithPosition:CGPointMake(550, 300)];
     [self addChild:dragon];
     
 }
@@ -201,8 +202,10 @@ int _counter = 0;
     
     
     
+    
+    
     [self moveBg];
-    //[self moveObstacle];
+    [self moveDragon];
     
     if(self.ninja.position.y >= 130 && self.ninja.isJumping == YES){
         if(_counter == 8){
@@ -217,6 +220,18 @@ int _counter = 0;
         self.ninja.isJumping = NO;
         [self.ninja setNinjasNormalSize];
         
+    }
+}
+
+-(void)moveDragon{
+    if(dragon.position.x <= self.ninja.position.x){
+        [dragon removeFromParent];
+    }
+    if(dragon.position.x > self.ninja.position.x){
+        //dragon.position.x = -self.view.bounds.size.width/2;
+        CGPoint pos = dragon.position;
+        pos.x = dragon.position.x - 15;
+        dragon.position = pos;
     }
 }
 
