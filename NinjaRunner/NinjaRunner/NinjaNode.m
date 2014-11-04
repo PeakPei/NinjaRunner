@@ -13,7 +13,12 @@
 +(instancetype) ninjaWithPosition:(CGPoint)position{
     NinjaNode *ninja = [self spriteNodeWithImageNamed:@"ninja_run_1"];
     ninja.position = position;
+    [ninja run];
     
+    return ninja;
+}
+
+-(void)run{
     NSArray *textures = @[
                           [SKTexture textureWithImageNamed:@"ninja_run_1"],
                           [SKTexture textureWithImageNamed:@"ninja_run_2"],
@@ -24,9 +29,69 @@
                           [SKTexture textureWithImageNamed:@"ninja_run_7"],
                           [SKTexture textureWithImageNamed:@"ninja_run_8"]
                           ];
-    SKAction *runningNinjaAnimation = [SKAction animateWithTextures:textures timePerFrame:0.13];
-    [ninja runAction:[SKAction repeatActionForever:runningNinjaAnimation]];
-    return ninja;
+    
+//    self.size = CGSizeMake(150, 130);
+//    self.position = CGPointMake(100, 110);
+    SKAction *runningNinjaAnimation = [SKAction animateWithTextures:textures timePerFrame:0.10];
+    [self runAction:[SKAction repeatActionForever:runningNinjaAnimation] withKey:@"run"];
+    
+
 }
+
+-(void)jump{
+    NSArray *jumpTextures = @[
+                              [SKTexture textureWithImageNamed:@"ninja_jump_3"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_4"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_5"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_6"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_7"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_8"]
+                              ];
+    //[self removeActionForKey:@"run"];
+    
+//    self.size = CGSizeMake(170, 180);
+    
+    SKTexture *jumpTexture = [SKTexture textureWithImageNamed:@"ninja_jump_1"];
+    [self setTexture:jumpTexture];
+    [self performSelector:@selector(attachSecondJumpLayer) withObject:nil afterDelay:0.13 ];
+    //[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:jump repeats:NO];
+    
+    
+    self.position = CGPointMake(150, 200);
+    
+    
+    SKAction *jumpingNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.13];
+    [self runAction:[SKAction repeatAction:jumpingNinjaAnimation count:1]];
+
+    
+    //[self run];
+    //[self removeActionForKey:@"jump"];
+    //[self setSize:CGSizeMake(150, 130)];
+}
+
+-(void) attachSecondJumpLayer{
+    SKTexture *jumpTexture = [SKTexture textureWithImageNamed:@"ninja_jump_2"];
+    [self setTexture:jumpTexture];
+}
+
+-(void) jumpLower{
+    NSArray *jumpTextures = @[
+                              [SKTexture textureWithImageNamed:@"ninja_jump_low_1"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_low_2"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_low_3"]
+                              ];
+    SKAction *jumpingNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.13];
+    [self runAction:[SKAction repeatAction:jumpingNinjaAnimation count:1]];
+
+}
+
+-(void)setNinjasNormalSize{
+    self.size = CGSizeMake(150, 130);
+    self.position = CGPointMake(100, 110);
+}
+
+//-(void)jumpWithFactor:(float)factor{
+//    self.physicsBody.velocity = CGVectorMake(0.0, 500*factor);
+//}
 
 @end

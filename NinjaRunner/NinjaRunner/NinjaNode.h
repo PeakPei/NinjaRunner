@@ -10,6 +10,18 @@
 
 @interface NinjaNode : SKSpriteNode
 
+@property(nonatomic) BOOL isJumping;
+
 + (instancetype) ninjaWithPosition:(CGPoint)position;
+
+- (void) run;
+
+- (void) jump;
+
+-(void) jumpLower;
+
+-(void) setNinjasNormalSize;
+
+//-(void)jumpWithFactor:(float)factor;
 
 @end

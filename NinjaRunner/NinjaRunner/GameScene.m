@@ -10,6 +10,10 @@
 #import "NinjaNode.h"
 #import "DragonNode.h"
 
+//categories for the collisions
+static const uint32_t ninjaCategory =  0x1 << 0;
+static const uint32_t obstacleCategory =  0x1 << 1;
+
 static const float BG_VELOCITY = 50.0;
 
 static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b)
@@ -24,25 +28,36 @@ static inline CGPoint CGPointMultiplyScalar(const CGPoint a, const CGFloat b)
 
 @implementation GameScene
 
+@synthesize atlas, ninja;
+
 NSTimeInterval _lastUpdateTime;
 NSTimeInterval _dt;
 NSTimeInterval _lastMissileAdded;
+BOOL _jumped = NO;
+int _counter = 0;
+
 
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"Sprites"];
-//    SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
-//    background.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-//    background.zPosition = -1;
-//    //background
-//    [self addChild:background];
-    
+
+    self.physicsWorld.gravity = CGVectorMake(100, 110);
+    self.physicsWorld.contactDelegate = self;
     
     self.backgroundColor = [SKColor whiteColor];
     [self initalizingScrollingBackground];
     
-    NinjaNode *ninja = [NinjaNode ninjaWithPosition:CGPointMake(100, 77)];
-    [self addChild:ninja];
+    
+    self.ninja = [NinjaNode ninjaWithPosition:CGPointMake(100, 110)];
+    //self.ninja.size = CGSizeMake(160, 140);
+//    self.ninja.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.ninja.size];
+//    self.ninja.physicsBody.categoryBitMask = ninjaCategory;
+//    self.ninja.physicsBody.dynamic = YES;
+//    self.ninja.physicsBody.contactTestBitMask = obstacleCategory;
+//    self.ninja.physicsBody.collisionBitMask = 0;
+//    self.ninja.physicsBody.usesPreciseCollisionDetection = YES;
+    [self addChild:self.ninja];
+    factor = 1.0;
+    //[self performJumpingAnimation];
     
     DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(400, 300)];
     [self addChild:dragon];
@@ -78,24 +93,31 @@ NSTimeInterval _lastMissileAdded;
      }];
 }
 
+//-(void)jump{
+//    if(self.ninja.isJumping == NO){
+//        factor = factor - 0.07;
+//        
+//        //[self.ninja removeActionForKey:@"run"];
+//        [self.ninja jumpWithFactor:factor];
+//        self.ninja.size = CGSizeMake(150, 170);
+//        self.ninja.position = CGPointMake(100, 125);
+//        [self.ninja jump];
+//        //[self.ninja run];
+//    }
+//}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.xScale = 0.5;
-        sprite.yScale = 0.5;
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
+    if(self.ninja.isJumping == NO){
+        self.ninja.isJumping = YES;
+        factor = 1.0;
+        [self.ninja jump];
+        jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self.ninja selector:@selector(jump) userInfo:nil repeats:NO];
     }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [jumpTimer invalidate];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -112,11 +134,27 @@ NSTimeInterval _lastMissileAdded;
     if( currentTime - _lastMissileAdded > 1)
     {
         _lastMissileAdded = currentTime + 1;
-        //[self addMissile];
+        //TODO for today : [self addMissile];
     }
     
     
+    
     [self moveBg];
+    
+    if(self.ninja.position.y >= 130 && self.ninja.isJumping == YES){
+        if(_counter == 8){
+            [self.ninja setNinjasNormalSize];
+            _counter = 0;
+            self.ninja.isJumping = NO;
+        } else{
+            _counter++;
+        }
+        self.ninja.isJumping = YES;
+    } else{
+        self.ninja.isJumping = NO;
+        [self.ninja setNinjasNormalSize];
+        
+    }
 }
 
 @end
