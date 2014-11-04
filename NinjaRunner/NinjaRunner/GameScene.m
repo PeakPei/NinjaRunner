@@ -98,22 +98,22 @@ DragonNode *dragon;
 
 
 //Method for enemies move
-//-(void) addEnemy{
-//    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(400, 300)];
-//
-//    
-//    //Adding SpriteKit physicsBody for collision detection
+-(void) addEnemy{
+    dragon = [DragonNode dragonWithPosition:CGPointMake(650, 300)];
+
+    
+    //Adding SpriteKit physicsBody for collision detection
 //    dragon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:dragon.size];
 //    dragon.physicsBody.categoryBitMask = obstacleCategory;
 //    dragon.physicsBody.dynamic = YES;
 //    dragon.physicsBody.contactTestBitMask = ninjaCategory;
 //    dragon.physicsBody.collisionBitMask = 0;
 //    dragon.physicsBody.usesPreciseCollisionDetection = YES;
-//    dragon.name = @"dragon";
-//    
-//    
-//    [self addChild:dragon];
-//}
+    dragon.name = @"dragon";
+    
+    
+    [self addChild:dragon];
+}
 
 //-(void)jump{
 //    if(self.ninja.isJumping == NO){
@@ -128,15 +128,6 @@ DragonNode *dragon;
 //    }
 //}
 
-//- (void)mouseUp:(NSEvent *)event
-//{
-//    NSInteger clickCount = [event clickCount];
-//    if (2 == clickCount) [self handleDoubleClickEvent:event];
-//}
-//
-//-(void)handleDoubleClickEvent:(NSEvent *)event{
-//    
-//}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
@@ -226,7 +217,12 @@ DragonNode *dragon;
 -(void)moveDragon{
     if(dragon.position.x <= self.ninja.position.x){
         [dragon removeFromParent];
+        //[self performSelector:@selector(addEnemy) withObject:nil afterDelay:0.3 ];
+        [self addEnemy];
     }
+//    if(dragon.position.x == self.view.bounds.size.width/2 || dragon.position.x + 15 == self.view.bounds.size.width/2){
+//        [self addEnemy];
+//    }
     if(dragon.position.x > self.ninja.position.x){
         //dragon.position.x = -self.view.bounds.size.width/2;
         CGPoint pos = dragon.position;
