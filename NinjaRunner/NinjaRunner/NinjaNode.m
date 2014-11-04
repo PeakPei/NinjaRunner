@@ -57,7 +57,7 @@
     //[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:jump repeats:NO];
     
     
-    self.position = CGPointMake(150, 200);
+    self.position = CGPointMake(150, 240);
     
     
     SKAction *jumpingNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.13];
@@ -80,8 +80,12 @@
                               [SKTexture textureWithImageNamed:@"ninja_jump_low_2"],
                               [SKTexture textureWithImageNamed:@"ninja_jump_low_3"]
                               ];
-    SKAction *jumpingNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.13];
-    [self runAction:[SKAction repeatAction:jumpingNinjaAnimation count:1]];
+    SKTexture *jumpTexture = [SKTexture textureWithImageNamed:@"ninja_jump_low_1"];
+    [self setTexture:jumpTexture];
+    
+    self.position = CGPointMake(150, 160);
+    SKAction *jumpingLowNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.07];
+    [self runAction:[SKAction repeatAction:jumpingLowNinjaAnimation count:1]];
 
 }
 

@@ -15,6 +15,7 @@ static const uint32_t ninjaCategory =  0x1 << 0;
 static const uint32_t obstacleCategory =  0x1 << 1;
 
 static const float BG_VELOCITY = 50.0;
+static const float OBJECT_VELOCITY = 100.0;
 
 static inline CGPoint CGPointAdd(const CGPoint a, const CGPoint b)
 {
@@ -59,8 +60,9 @@ int _counter = 0;
     factor = 1.0;
     //[self performJumpingAnimation];
     
-    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(400, 300)];
+    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(450, 300)];
     [self addChild:dragon];
+    
 }
 
 -(void)initalizingScrollingBackground
@@ -93,6 +95,25 @@ int _counter = 0;
      }];
 }
 
+
+//Method for enemies move
+//-(void) addEnemy{
+//    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(400, 300)];
+//
+//    
+//    //Adding SpriteKit physicsBody for collision detection
+//    dragon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:dragon.size];
+//    dragon.physicsBody.categoryBitMask = obstacleCategory;
+//    dragon.physicsBody.dynamic = YES;
+//    dragon.physicsBody.contactTestBitMask = ninjaCategory;
+//    dragon.physicsBody.collisionBitMask = 0;
+//    dragon.physicsBody.usesPreciseCollisionDetection = YES;
+//    dragon.name = @"dragon";
+//    
+//    
+//    [self addChild:dragon];
+//}
+
 //-(void)jump{
 //    if(self.ninja.isJumping == NO){
 //        factor = factor - 0.07;
@@ -106,19 +127,60 @@ int _counter = 0;
 //    }
 //}
 
+//- (void)mouseUp:(NSEvent *)event
+//{
+//    NSInteger clickCount = [event clickCount];
+//    if (2 == clickCount) [self handleDoubleClickEvent:event];
+//}
+//
+//-(void)handleDoubleClickEvent:(NSEvent *)event{
+//    
+//}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    if(self.ninja.isJumping == NO){
-        self.ninja.isJumping = YES;
-        factor = 1.0;
-        [self.ninja jump];
-        jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self.ninja selector:@selector(jump) userInfo:nil repeats:NO];
+    UITouch *touch = [touches anyObject];
+    if([touch tapCount] == 2){
+        [self.ninja jumpLower];
+    } else{
+        if(self.ninja.isJumping == NO){
+            self.ninja.isJumping = YES;
+            factor = 1.0;
+            [self.ninja jump];
+            jumpTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self.ninja selector:@selector(jump) userInfo:nil repeats:NO];
+        }
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     [jumpTimer invalidate];
+    
+    for(int i =0; i< touches.count; i++){
+//        if([touches[i] tabCount] == 2){
+//            [self.ninja jumpLower];
+//        }
+    }
 }
+
+
+//Method for the enemies move
+//- (void)moveObstacle
+//{
+//    NSArray *nodes = self.children;
+//    
+//    for(SKNode * node in nodes){
+//        if (![node.name  isEqual: @"background"] && ![node.name  isEqual: @"ninja"] && ![node.name isEqual:nil]) {
+//            SKSpriteNode *ob = (SKSpriteNode *) node;
+//            CGPoint obVelocity = CGPointMake(-OBJECT_VELOCITY, 0);
+//            CGPoint amtToMove = CGPointMultiplyScalar(obVelocity,_dt);
+//            
+//            ob.position = CGPointAdd(ob.position, amtToMove);
+//            if(ob.position.x < -100)
+//            {
+//                [ob removeFromParent];
+//            }
+//        }
+//    }
+//}
 
 -(void)update:(CFTimeInterval)currentTime {
     if (_lastUpdateTime)
@@ -134,12 +196,13 @@ int _counter = 0;
     if( currentTime - _lastMissileAdded > 1)
     {
         _lastMissileAdded = currentTime + 1;
-        //TODO for today : [self addMissile];
+        //[self addEnemy];
     }
     
     
     
     [self moveBg];
+    //[self moveObstacle];
     
     if(self.ninja.position.y >= 130 && self.ninja.isJumping == YES){
         if(_counter == 8){

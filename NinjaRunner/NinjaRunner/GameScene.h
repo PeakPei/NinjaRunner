@@ -9,7 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "NinjaNode.h"
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate>{
+@interface GameScene : SKScene <SKPhysicsContactDelegate, NSObject>{
 
     NSTimer *jumpTimer;
     float factor;
