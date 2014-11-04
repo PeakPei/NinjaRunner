@@ -16,7 +16,4 @@
 
 }
 
-@property(strong, nonatomic)SKTextureAtlas *atlas;
-@property(strong, nonatomic)NinjaNode *ninja;
-
 @end
