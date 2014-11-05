@@ -20,6 +20,8 @@
 		243D64501A092D2900166A00 /* BackgroundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D644F1A092D2900166A00 /* BackgroundNode.m */; };
 		243D64531A0933F300166A00 /* VectorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D64521A0933F300166A00 /* VectorHelper.m */; };
 		243D64571A0942D100166A00 /* GroundNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 243D64561A0942D100166A00 /* GroundNode.m */; };
+		244280621A0A48A3005F6A87 /* ButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 244280611A0A48A3005F6A87 /* ButtonNode.m */; };
+		2442806D1A0A572F005F6A87 /* ProjectileNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2442806C1A0A572F005F6A87 /* ProjectileNode.m */; };
 		247C75351A08FD7C009E0F82 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C75341A08FD7C009E0F82 /* Util.m */; };
 		24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 24968B9E1A07B25B00E679C5 /* Sprites.atlas */; };
 		24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA41A07B8D600E679C5 /* DragonNode.m */; };
@@ -59,6 +61,10 @@
 		243D64521A0933F300166A00 /* VectorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VectorHelper.m; sourceTree = "<group>"; };
 		243D64551A0942D100166A00 /* GroundNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroundNode.h; sourceTree = "<group>"; };
 		243D64561A0942D100166A00 /* GroundNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroundNode.m; sourceTree = "<group>"; };
+		244280601A0A48A3005F6A87 /* ButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonNode.h; sourceTree = "<group>"; };
+		244280611A0A48A3005F6A87 /* ButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonNode.m; sourceTree = "<group>"; };
+		2442806B1A0A572F005F6A87 /* ProjectileNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectileNode.h; sourceTree = "<group>"; };
+		2442806C1A0A572F005F6A87 /* ProjectileNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectileNode.m; sourceTree = "<group>"; };
 		247C75331A08FD7C009E0F82 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		247C75341A08FD7C009E0F82 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		24968B9E1A07B25B00E679C5 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				243D64541A09365500166A00 /* Utility */,
+				244280631A0A48B2005F6A87 /* HUD */,
 				2421CAE21A07A989000DB144 /* GameScene.h */,
 				2421CAE31A07A989000DB144 /* GameScene.m */,
 				243D64551A0942D100166A00 /* GroundNode.h */,
@@ -117,6 +124,8 @@
 				24968BA41A07B8D600E679C5 /* DragonNode.m */,
 				24968BA01A07B39300E679C5 /* NinjaNode.h */,
 				06342ABF1A081BD0007D2256 /* NinjaNode.m */,
+				2442806B1A0A572F005F6A87 /* ProjectileNode.h */,
+				2442806C1A0A572F005F6A87 /* ProjectileNode.m */,
 				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
 				2421CAED1A07A989000DB144 /* Images.xcassets */,
 				2421CADB1A07A989000DB144 /* Supporting Files */,
@@ -166,6 +175,15 @@
 				247C75341A08FD7C009E0F82 /* Util.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		244280631A0A48B2005F6A87 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				244280601A0A48A3005F6A87 /* ButtonNode.h */,
+				244280611A0A48A3005F6A87 /* ButtonNode.m */,
+			);
+			name = HUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,12 +290,14 @@
 			files = (
 				243D64571A0942D100166A00 /* GroundNode.m in Sources */,
 				06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */,
+				2442806D1A0A572F005F6A87 /* ProjectileNode.m in Sources */,
 				243D64501A092D2900166A00 /* BackgroundNode.m in Sources */,
 				2421CAE91A07A989000DB144 /* GameViewController.m in Sources */,
 				2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */,
 				2421CAE41A07A989000DB144 /* GameScene.m in Sources */,
 				24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */,
 				247C75351A08FD7C009E0F82 /* Util.m in Sources */,
+				244280621A0A48A3005F6A87 /* ButtonNode.m in Sources */,
 				243D64531A0933F300166A00 /* VectorHelper.m in Sources */,
 				2421CADE1A07A989000DB144 /* main.m in Sources */,
 			);

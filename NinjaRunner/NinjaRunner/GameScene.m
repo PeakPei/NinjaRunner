@@ -12,6 +12,8 @@
 #import "Util.h"
 #import "BackgroundNode.h"
 #import "GroundNode.h"
+#import "ButtonNode.h"
+#import "ProjectileNode.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate>
 
@@ -32,8 +34,8 @@ NSTimeInterval _lastMissileAdded;
 
 -(void)didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    
-    self.physicsWorld.gravity = CGVectorMake(0, -9.8);
+    float sceneGravity = -self.frame.size.height * GravityMultiplier; // ~8
+    self.physicsWorld.gravity = CGVectorMake(0, sceneGravity);
     self.physicsWorld.contactDelegate = self;
     
     background = [BackgroundNode backgroundAtPosition:CGPointZero parent:self];
@@ -41,6 +43,8 @@ NSTimeInterval _lastMissileAdded;
     
     SKSpriteNode *backgroundImage = (SKSpriteNode *)[background childNodeWithName:BackgroundSpriteName];
     _groundHeight = backgroundImage.size.height * BackgroundLandHeightPercent;
+    
+    [self setupButtons];
     
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];
     [self addChild:ground];
@@ -51,10 +55,41 @@ NSTimeInterval _lastMissileAdded;
     
     DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(550, 300)];
     [self addChild:dragon];
-    
 }
 
-//Method for enemies move
+- (void) setupButtons {
+    float margin = self.frame.size.width * MarginPercent;
+    
+    CGSize sizeButton = CGSizeMake(self.frame.size.width * ButtonSizePercent,
+                                   self.frame.size.width * ButtonSizePercent);
+    
+    CGPoint positionButtonJump = CGPointMake(margin, margin);
+    ButtonNode *buttonJump = [ButtonNode buttonWithPosition:positionButtonJump
+                                                       size:sizeButton
+                                                      color:[SKColor darkGrayColor]
+                                                      alpha:0.3];
+    buttonJump.name = ButtonJumpName;
+    [self addChild:buttonJump];
+    
+    CGPoint positionButtonAttack = CGPointMake(self.size.width - margin - sizeButton.width, margin);
+    ButtonNode *buttonAttack = [ButtonNode buttonWithPosition:positionButtonAttack
+                                                         size:sizeButton
+                                                        color:[SKColor redColor]
+                                                        alpha:0.2];
+    
+    buttonAttack.name = ButtonAttackName;
+    [self addChild:buttonAttack];
+    
+    CGPoint positionButtonSpecialAttack = CGPointMake(positionButtonAttack.x - sizeButton.width - margin * 2, margin);
+    ButtonNode *buttonSpecialAttack = [ButtonNode buttonWithPosition:positionButtonSpecialAttack
+                                                                size:sizeButton
+                                                               color:[SKColor yellowColor]
+                                                               alpha:0.2];
+    
+    buttonSpecialAttack.name = ButtonSpecialAttackName;
+    [self addChild:buttonSpecialAttack];
+}
+
 -(void) addEnemy{
     DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(650, 300)];
     
@@ -65,16 +100,16 @@ NSTimeInterval _lastMissileAdded;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [ninja jump];
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [jumpTimer invalidate];
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
     
-    for(int i =0; i< touches.count; i++){
-//        if([touches[i] tabCount] == 2){
-//            [self.ninja jumpLower];
-//        }
+    if ([node.name isEqualToString:ButtonJumpName]) {
+        [ninja jump];
+    }
+    
+    if ([node.name isEqualToString:ButtonAttackName]) {
+        [ninja attack];
     }
 }
 
@@ -93,9 +128,25 @@ NSTimeInterval _lastMissileAdded;
     if (firstBody.categoryBitMask == CollisionCategoryNinja
         && secondBody.categoryBitMask == CollisionCategoryGround) {
         ninja.jumpsInProgressCount = 0;
+        [ninja removeActionForKey:NinjaJumpActionKey];
     }
 }
 
+-(void)update:(CFTimeInterval)currentTime {
+    if (_lastUpdateTimeInterval) {
+        _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
+    }
+    
+    if( currentTime - _lastMissileAdded > 1)
+    {
+        _lastMissileAdded = currentTime + 1;
+        //[self addEnemy];
+    }
+    
+    [background moveByTimeSinceLastUpdate:_timeSinceLastUpdate];
+    
+    self.lastUpdateTimeInterval = currentTime;
+}
 
 //Method for the enemies move
 //- (void)moveObstacle
@@ -116,22 +167,6 @@ NSTimeInterval _lastMissileAdded;
 //        }
 //    }
 //}
-
--(void)update:(CFTimeInterval)currentTime {
-    if (_lastUpdateTimeInterval) {
-        _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
-    }
-    
-    if( currentTime - _lastMissileAdded > 1)
-    {
-        _lastMissileAdded = currentTime + 1;
-        //[self addEnemy];
-    }
-    
-    [background moveByTimeSinceLastUpdate:_timeSinceLastUpdate];
-    
-    self.lastUpdateTimeInterval = currentTime;
-}
 
 //-(void)moveDragon{
 //    if(dragon.position.x <= ninja.position.x){

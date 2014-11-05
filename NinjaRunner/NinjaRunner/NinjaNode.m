@@ -8,6 +8,7 @@
 
 #import "NinjaNode.h"
 #import "Util.h"
+#import "ProjectileNode.h"
 
 @interface NinjaNode ()
 
@@ -62,19 +63,27 @@
                               [SKTexture textureWithImageNamed:@"ninja_jump_5"],
                               [SKTexture textureWithImageNamed:@"ninja_jump_6"],
                               [SKTexture textureWithImageNamed:@"ninja_jump_6"],
+                              [SKTexture textureWithImageNamed:@"ninja_jump_6"],
                               [SKTexture textureWithImageNamed:@"ninja_jump_7"]];
     
     _jumpAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.15];
 }
 
--(void) jump {
+- (void) jump {
     // Allow only 2 jumps at a time
     if (_jumpsInProgressCount < 2) {
         _jumpsInProgressCount++;
     
         self.physicsBody.velocity = CGVectorMake(0, _jumpVelocityY);
-        [self runAction:_jumpAnimation];
+        [self runAction:_jumpAnimation withKey:NinjaJumpActionKey];
     }
+}
+
+- (void) attack {
+    CGPoint projectilePosition = CGPointMake(self.position.x + self.frame.size.width / 2,
+                                             self.position.y + self.frame.size.height / 2);
+    ProjectileNode *projectile = [ProjectileNode projectileAtPosition:projectilePosition];
+    [self.parent addChild:projectile];
 }
 
 //-(void) attachSecondJumpLayer{
