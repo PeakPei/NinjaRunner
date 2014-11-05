@@ -12,24 +12,29 @@
 
 @interface NinjaNode ()
 
-@property SKAction *runAnimation;
-@property SKAction *jumpAnimation;
+@property (nonatomic) SKAction *runAnimation;
+@property (nonatomic) SKAction *jumpAnimation;
+@property (nonatomic) SKAction *attackAnimation;
 
-@property float jumpVelocityY;
+@property (nonatomic) float jumpVelocityY;
+
+@property (nonatomic) BOOL isCharged;
 
 @end
 
 @implementation NinjaNode
 
-+(instancetype) ninjaWithPosition:(CGPoint)position inScene:(SKScene *)scene {
++ (instancetype) ninjaWithPosition:(CGPoint)position inScene:(SKScene *)scene {
     NinjaNode *ninja = [self spriteNodeWithImageNamed:@"ninja_run_1"];
     ninja.position = position;
     ninja.jumpVelocityY = scene.frame.size.height * NinjaJumpVelocityMultiplier;
     ninja.jumpsInProgressCount = 0;
+    ninja.damage = NinjaDamage;
     
     [ninja setupPhysicsBody];
     [ninja setupRunAnimation];
     [ninja setupJumpAnimation];
+    [ninja setupAttackAnimation];
     
     [ninja runAction:[SKAction repeatActionForever:ninja.runAnimation]];
     
@@ -69,6 +74,11 @@
     _jumpAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.15];
 }
 
+- (void) setupAttackAnimation {
+    NSArray *attackTextures = @[[SKTexture textureWithImageNamed:@"ninja_attack_6"]];
+    _attackAnimation = [SKAction animateWithTextures:attackTextures timePerFrame:0.08];
+}
+
 - (void) jump {
     // Allow only 2 jumps at a time
     if (_jumpsInProgressCount < 2) {
@@ -80,10 +90,37 @@
 }
 
 - (void) attack {
-    CGPoint projectilePosition = CGPointMake(self.position.x + self.frame.size.width / 2,
-                                             self.position.y + self.frame.size.height / 2);
+    CGPoint projectilePosition = CGPointMake(self.position.x + self.frame.size.width / 3,
+                                             self.position.y + self.frame.size.height / 5);
+    
     ProjectileNode *projectile = [ProjectileNode projectileAtPosition:projectilePosition];
+    if (_isCharged) {
+        SKEmitterNode *chargedProjectile = [self createChargedProjectile];
+        chargedProjectile.position = projectilePosition;
+        [self.parent addChild:chargedProjectile];
+    }
+    projectile.damage = _isCharged ? self.damage * 2 : self.damage;
+    _isCharged = NO;
+    
+    [self runAction:_attackAnimation];
     [self.parent addChild:projectile];
+}
+
+- (void) chargeAttack {
+    _isCharged = YES;
+}
+
+- (SKEmitterNode *) createChargedProjectile {
+    NSString *chargedProjectileFilePath = [[NSBundle mainBundle] pathForResource:@"ChargedProjectile" ofType:@"sks"];
+    SKEmitterNode *chargedProjectile = [NSKeyedUnarchiver unarchiveObjectWithFile:chargedProjectileFilePath];
+    chargedProjectile.zPosition = 1;
+    chargedProjectile.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:1];
+    chargedProjectile.physicsBody.affectedByGravity = NO;
+    chargedProjectile.physicsBody.collisionBitMask = 0;
+    chargedProjectile.physicsBody.contactTestBitMask = 0;
+    chargedProjectile.physicsBody.velocity = CGVectorMake(ProjectileVelocityX, 0);
+
+    return chargedProjectile;
 }
 
 //-(void) attachSecondJumpLayer{

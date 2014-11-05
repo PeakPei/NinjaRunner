@@ -9,19 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-static const float GravityMultiplier = 0.025;
+static const CGFloat GravityMultiplier = 0.025;
 
-static const int BackgroundSpeed = -150;
+static const NSInteger BackgroundSpeed = -150;
 static const CGFloat BackgroundLandHeightPercent = 0.15;
 
-static const float MarginPercent = 0.013;
+static const CGFloat MarginPercent = 0.013;
+static const CGFloat ButtonSizePercent = 0.09;
 
-static const float ButtonSizePercent = 0.09;
+static const CGFloat ChargeAttackDuration = 2.0;
 
-static const float NinjaPositionXPercent = 0.15;
-static const float NinjaJumpVelocityMultiplier = 1.6;
+static const CGFloat NinjaPositionXPercent = 0.15;
+static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
+static const NSInteger NinjaDamage = 20;
 
-static const int ProjectileVelocityX = 1500;
+static const NSInteger ProjectileVelocityX = 500;
 
 static NSString *BackgroundName = @"Background";
 static NSString *BackgroundSpriteName = @"BackgroundImage";
@@ -32,10 +34,13 @@ static NSString *ButtonJumpName = @"ButtonJump";
 static NSString *ButtonAttackName = @"ButtonAttack";
 static NSString *ButtonSpecialAttackName = @"ButtonSpecialAttack";
 
+static NSString *ChargedProjectileFilePath;
+
 typedef NS_OPTIONS(NSUInteger, CollisionCategory) {
     CollisionCategoryEnemy = 1 << 0,
     CollisionCategoryNinja = 1 << 1,
-    CollisionCategoryGround = 1 << 2
+    CollisionCategoryGround = 1 << 2,
+    CollisionCategoryProjectile = 1 << 3
 };
 
 @interface Util : NSObject

@@ -14,9 +14,11 @@ static NSString *NinjaJumpActionKey = @"Jump";
 
 + (instancetype) ninjaWithPosition:(CGPoint)position inScene:(SKScene *)scene;
 
-@property NSInteger jumpsInProgressCount;
+@property (nonatomic) NSInteger jumpsInProgressCount;
+@property (nonatomic) NSInteger damage;
 
 - (void) jump;
 - (void) attack;
+- (void) chargeAttack;
 
 @end

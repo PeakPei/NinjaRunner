@@ -15,16 +15,23 @@
 #import "ButtonNode.h"
 #import "ProjectileNode.h"
 
-@interface GameScene ()<SKPhysicsContactDelegate>
+@interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
-@property NSTimeInterval lastUpdateTimeInterval;
-@property NSTimeInterval timeSinceLastUpdate;
+@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic) NSTimeInterval timeSinceLastUpdate;
 
-@property float groundHeight;
+@property (nonatomic) NSTimeInterval longPressDuration;
+@property (nonatomic) BOOL isLongPressActive;
+
+@property (nonatomic) CGFloat groundHeight;
 
 @end
 
 @implementation GameScene {
+    UISwipeGestureRecognizer *swipeUpRecognizer;
+    UISwipeGestureRecognizer *swipeRightRecognizer;
+    UILongPressGestureRecognizer *longPressRecognizer;
+    
     BackgroundNode *background;
     NinjaNode *ninja;
 }
@@ -32,9 +39,11 @@
 NSTimeInterval _lastMissileAdded;
 
 
--(void)didMoveToView:(SKView *)view {
+- (void) didMoveToView:(SKView *)view {
     /* Setup your scene here */
-    float sceneGravity = -self.frame.size.height * GravityMultiplier; // ~8
+    [self setupGestureRecognizers];
+    
+    CGFloat sceneGravity = -self.frame.size.height * GravityMultiplier; // ~8
     self.physicsWorld.gravity = CGVectorMake(0, sceneGravity);
     self.physicsWorld.contactDelegate = self;
     
@@ -44,12 +53,10 @@ NSTimeInterval _lastMissileAdded;
     SKSpriteNode *backgroundImage = (SKSpriteNode *)[background childNodeWithName:BackgroundSpriteName];
     _groundHeight = backgroundImage.size.height * BackgroundLandHeightPercent;
     
-    [self setupButtons];
-    
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];
     [self addChild:ground];
     
-    float ninjaPositionX = self.frame.size.width * NinjaPositionXPercent;
+    CGFloat ninjaPositionX = self.frame.size.width * NinjaPositionXPercent;
     ninja = [NinjaNode ninjaWithPosition:CGPointMake(ninjaPositionX, _groundHeight) inScene:self];
     [self addChild:ninja];
     
@@ -57,46 +64,56 @@ NSTimeInterval _lastMissileAdded;
     [self addChild:dragon];
 }
 
-- (void) setupButtons {
-    float margin = self.frame.size.width * MarginPercent;
+- (void) setupGestureRecognizers {
+    swipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeUpRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.view addGestureRecognizer:swipeUpRecognizer];
     
-    CGSize sizeButton = CGSizeMake(self.frame.size.width * ButtonSizePercent,
-                                   self.frame.size.width * ButtonSizePercent);
+    swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRightRecognizer];
     
-    CGPoint positionButtonJump = CGPointMake(margin, margin);
-    ButtonNode *buttonJump = [ButtonNode buttonWithPosition:positionButtonJump
-                                                       size:sizeButton
-                                                      color:[SKColor darkGrayColor]
-                                                      alpha:0.3];
-    buttonJump.name = ButtonJumpName;
-    [self addChild:buttonJump];
-    
-    CGPoint positionButtonAttack = CGPointMake(self.size.width - margin - sizeButton.width, margin);
-    ButtonNode *buttonAttack = [ButtonNode buttonWithPosition:positionButtonAttack
-                                                         size:sizeButton
-                                                        color:[SKColor redColor]
-                                                        alpha:0.2];
-    
-    buttonAttack.name = ButtonAttackName;
-    [self addChild:buttonAttack];
-    
-    CGPoint positionButtonSpecialAttack = CGPointMake(positionButtonAttack.x - sizeButton.width - margin * 2, margin);
-    ButtonNode *buttonSpecialAttack = [ButtonNode buttonWithPosition:positionButtonSpecialAttack
-                                                                size:sizeButton
-                                                               color:[SKColor yellowColor]
-                                                               alpha:0.2];
-    
-    buttonSpecialAttack.name = ButtonSpecialAttackName;
-    [self addChild:buttonSpecialAttack];
+    longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
+    longPressRecognizer.minimumPressDuration = 0.25;
+    [self.view addGestureRecognizer:longPressRecognizer];
 }
 
--(void) addEnemy{
+- (void) addEnemy {
     DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(650, 300)];
     
     dragon.name = @"dragon";
     
     
     [self addChild:dragon];
+}
+
+- (void) handleSwipe:(UISwipeGestureRecognizer *)recognizer {
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
+        [ninja jump];
+    } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        [ninja attack];
+    }
+}
+
+- (void) handleLongPress:(UILongPressGestureRecognizer *)recognizer {
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        // Animate progress
+        NSLog(@"start");
+        _isLongPressActive = YES;
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateCancelled) {
+        NSLog(@"cancelled(charge)");
+        [ninja chargeAttack];
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded
+        || recognizer.state == UIGestureRecognizerStateCancelled
+        || recognizer.state == UIGestureRecognizerStateFailed) {
+        _isLongPressActive = NO;
+        _longPressDuration = 0;
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -140,7 +157,17 @@ NSTimeInterval _lastMissileAdded;
     if( currentTime - _lastMissileAdded > 1)
     {
         _lastMissileAdded = currentTime + 1;
-        //[self addEnemy];
+    }
+    
+    if (_isLongPressActive) {
+        _longPressDuration += _timeSinceLastUpdate;
+        NSLog(@"%f", _longPressDuration);
+        
+        if (_longPressDuration >= ChargeAttackDuration) {
+            // Interrupt the long press(it is completed)
+            longPressRecognizer.enabled = NO;
+            longPressRecognizer.enabled = YES;
+        }
     }
     
     [background moveByTimeSinceLastUpdate:_timeSinceLastUpdate];

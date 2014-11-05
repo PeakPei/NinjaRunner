@@ -12,4 +12,6 @@
 
 + (instancetype) projectileAtPosition:(CGPoint)position;
 
+@property (nonatomic) NSInteger damage;
+
 @end

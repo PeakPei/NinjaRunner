@@ -25,6 +25,8 @@
 		247C75351A08FD7C009E0F82 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 247C75341A08FD7C009E0F82 /* Util.m */; };
 		24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 24968B9E1A07B25B00E679C5 /* Sprites.atlas */; };
 		24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA41A07B8D600E679C5 /* DragonNode.m */; };
+		24AF0FF61A0AC99A00A57AE1 /* ChargedProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */; };
+		24AF0FF71A0AC99A00A57AE1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 24AF0FF51A0AC99A00A57AE1 /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		24968BA01A07B39300E679C5 /* NinjaNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NinjaNode.h; sourceTree = "<group>"; };
 		24968BA31A07B8D600E679C5 /* DragonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragonNode.h; sourceTree = "<group>"; };
 		24968BA41A07B8D600E679C5 /* DragonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragonNode.m; sourceTree = "<group>"; };
+		24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ChargedProjectile.sks; sourceTree = "<group>"; };
+		24AF0FF51A0AC99A00A57AE1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,8 @@
 				2442806C1A0A572F005F6A87 /* ProjectileNode.m */,
 				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
 				2421CAED1A07A989000DB144 /* Images.xcassets */,
+				24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */,
+				24AF0FF51A0AC99A00A57AE1 /* spark.png */,
 				2421CADB1A07A989000DB144 /* Supporting Files */,
 			);
 			path = NinjaRunner;
@@ -267,7 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */,
+				24AF0FF61A0AC99A00A57AE1 /* ChargedProjectile.sks in Resources */,
 				2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */,
+				24AF0FF71A0AC99A00A57AE1 /* spark.png in Resources */,
 				2421CAE61A07A989000DB144 /* GameScene.sks in Resources */,
 				2421CAEC1A07A989000DB144 /* Main.storyboard in Resources */,
 				24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */,
