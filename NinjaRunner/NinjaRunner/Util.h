@@ -22,6 +22,7 @@ static const CGFloat ChargeAttackDuration = 2.0;
 static const CGFloat NinjaPositionXPercent = 0.15;
 static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
 static const NSInteger NinjaDamage = 20;
+static const NSTimeInterval NinjaPowerAttackDuration = 10;
 
 static const NSInteger ProjectileVelocityX = 500;
 
@@ -30,9 +31,10 @@ static NSString *BackgroundSpriteName = @"BackgroundImage";
 
 static NSString *GroundName = @"Ground";
 
-static NSString *ButtonJumpName = @"ButtonJump";
-static NSString *ButtonAttackName = @"ButtonAttack";
-static NSString *ButtonSpecialAttackName = @"ButtonSpecialAttack";
+static NSString *ChargingNodeName = @"ChargingNode";
+static NSString *ChargingLabelText = @"Charging...";
+static NSString *ChargedLabelText = @"Charged!";
+static NSString *PowerAttackText = @"Power Attack!";
 
 static NSString *ChargedProjectileFilePath;
 

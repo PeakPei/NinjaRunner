@@ -10,9 +10,8 @@
 
 @implementation DragonNode
 
-+ (instancetype)dragonWithPosition:(CGPoint)position {
-    DragonNode *dragon = [self spriteNodeWithImageNamed:@"dragon_1"];
-    dragon.position = position;
++ (instancetype)dragonWithPosition:(CGPoint)position velocity:(CGVector)velocity health:(NSInteger)health {
+    DragonNode *dragon = [super enemyWithImageNamed:@"dragon_1" position:position velocity:velocity health:health];
     
     NSArray *textures = @[[SKTexture textureWithImageNamed:@"dragon_1"],
                           [SKTexture textureWithImageNamed:@"dragon_2"],
@@ -25,7 +24,7 @@
     
     SKAction *animation = [SKAction animateWithTextures:textures timePerFrame:0.13];
     [dragon runAction:[SKAction repeatActionForever:animation]];
-    
+
     return dragon;
 }
 

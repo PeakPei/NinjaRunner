@@ -16,9 +16,12 @@ static NSString *NinjaJumpActionKey = @"Jump";
 
 @property (nonatomic) NSInteger jumpsInProgressCount;
 @property (nonatomic) NSInteger damage;
+@property (nonatomic) NSTimeInterval powerAttackCooldown;
+@property (nonatomic) NSTimeInterval lastPowerAttackAgo;
 
 - (void) jump;
 - (void) attack;
 - (void) chargeAttack;
+- (void) enablePowerAttack;
 
 @end

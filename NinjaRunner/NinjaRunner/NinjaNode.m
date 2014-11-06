@@ -19,6 +19,7 @@
 @property (nonatomic) float jumpVelocityY;
 
 @property (nonatomic) BOOL isCharged;
+@property (nonatomic) BOOL isPowerAttackEnabled;
 
 @end
 
@@ -30,6 +31,9 @@
     ninja.jumpVelocityY = scene.frame.size.height * NinjaJumpVelocityMultiplier;
     ninja.jumpsInProgressCount = 0;
     ninja.damage = NinjaDamage;
+    
+    ninja.powerAttackCooldown = 15;
+    ninja.lastPowerAttackAgo = 0;
     
     [ninja setupPhysicsBody];
     [ninja setupRunAnimation];
@@ -94,11 +98,12 @@
                                              self.position.y + self.frame.size.height / 5);
     
     ProjectileNode *projectile = [ProjectileNode projectileAtPosition:projectilePosition];
-    if (_isCharged) {
+    if (_isCharged || _isPowerAttackEnabled) {
         SKEmitterNode *chargedProjectile = [self createChargedProjectile];
         chargedProjectile.position = projectilePosition;
         [self.parent addChild:chargedProjectile];
     }
+    
     projectile.damage = _isCharged ? self.damage * 2 : self.damage;
     _isCharged = NO;
     
@@ -108,6 +113,18 @@
 
 - (void) chargeAttack {
     _isCharged = YES;
+}
+
+- (void) enablePowerAttack {
+    _isPowerAttackEnabled = YES;
+    
+    SKAction *disablePowerAttack = [SKAction runBlock:^{
+        _isPowerAttackEnabled = NO;
+    }];
+    
+    SKAction *sequence = [SKAction sequence:@[[SKAction waitForDuration:NinjaPowerAttackDuration],
+                                              disablePowerAttack]];
+    [self runAction:sequence];
 }
 
 - (SKEmitterNode *) createChargedProjectile {

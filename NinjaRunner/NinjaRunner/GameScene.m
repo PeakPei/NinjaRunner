@@ -14,6 +14,7 @@
 #import "GroundNode.h"
 #import "ButtonNode.h"
 #import "ProjectileNode.h"
+#import "ChargingNode.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -25,22 +26,24 @@
 
 @property (nonatomic) CGFloat groundHeight;
 
+@property (nonatomic) CGPoint center;
+
 @end
 
 @implementation GameScene {
     UISwipeGestureRecognizer *swipeUpRecognizer;
     UISwipeGestureRecognizer *swipeRightRecognizer;
     UILongPressGestureRecognizer *longPressRecognizer;
+    UITapGestureRecognizer *tapRecognizer;
     
     BackgroundNode *background;
     NinjaNode *ninja;
+    ChargingNode *chargingNode;
 }
-
-NSTimeInterval _lastMissileAdded;
-
 
 - (void) didMoveToView:(SKView *)view {
     /* Setup your scene here */
+    self.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     [self setupGestureRecognizers];
     
     CGFloat sceneGravity = -self.frame.size.height * GravityMultiplier; // ~8
@@ -60,8 +63,7 @@ NSTimeInterval _lastMissileAdded;
     ninja = [NinjaNode ninjaWithPosition:CGPointMake(ninjaPositionX, _groundHeight) inScene:self];
     [self addChild:ninja];
     
-    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(550, 300)];
-    [self addChild:dragon];
+    
 }
 
 - (void) setupGestureRecognizers {
@@ -76,15 +78,10 @@ NSTimeInterval _lastMissileAdded;
     longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
     longPressRecognizer.minimumPressDuration = 0.25;
     [self.view addGestureRecognizer:longPressRecognizer];
-}
-
-- (void) addEnemy {
-    DragonNode *dragon = [DragonNode dragonWithPosition:CGPointMake(650, 300)];
     
-    dragon.name = @"dragon";
-    
-    
-    [self addChild:dragon];
+    tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTouch:)];
+    tapRecognizer.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:tapRecognizer];
 }
 
 - (void) handleSwipe:(UISwipeGestureRecognizer *)recognizer {
@@ -96,41 +93,44 @@ NSTimeInterval _lastMissileAdded;
 }
 
 - (void) handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-    
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        // Animate progress
-        NSLog(@"start");
+        chargingNode = [ChargingNode chargingNodeWithPosition:self.center text:ChargingLabelText];
+        [self addChild:chargingNode];
         _isLongPressActive = YES;
     }
     
     if (recognizer.state == UIGestureRecognizerStateCancelled) {
-        NSLog(@"cancelled(charge)");
+        _isLongPressActive = NO;
+        _longPressDuration = 0;
+        [chargingNode finishChargingWithText:ChargedLabelText];
         [ninja chargeAttack];
     }
     
     if (recognizer.state == UIGestureRecognizerStateEnded
-        || recognizer.state == UIGestureRecognizerStateCancelled
         || recognizer.state == UIGestureRecognizerStateFailed) {
         _isLongPressActive = NO;
         _longPressDuration = 0;
+        [chargingNode removeFromParent];
     }
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    SKNode *node = [self nodeAtPoint:location];
-    
-    if ([node.name isEqualToString:ButtonJumpName]) {
-        [ninja jump];
+// TODO: Finish
+- (void) handleDoubleTouch:(UITapGestureRecognizer *)recognizer {
+    if (ninja.lastPowerAttackAgo > ninja.powerAttackCooldown) {
+        [ninja enablePowerAttack];
+    } else {
+        
     }
     
-    if ([node.name isEqualToString:ButtonAttackName]) {
-        [ninja attack];
-    }
+    ChargingNode *powerAttackCharge = [ChargingNode chargingNodeWithPosition:self.center text:PowerAttackText];
+    [self addChild:powerAttackCharge];
+    [powerAttackCharge finishChargingWithText:PowerAttackText];
 }
 
-- (void)didBeginContact:(SKPhysicsContact *)contact {
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+- (void) didBeginContact:(SKPhysicsContact *)contact {
     SKPhysicsBody *firstBody, *secondBody;
     
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
@@ -149,25 +149,23 @@ NSTimeInterval _lastMissileAdded;
     }
 }
 
+- (void) chargeLongPress {
+    _longPressDuration += _timeSinceLastUpdate;
+    
+    if (_longPressDuration >= ChargeAttackDuration) {
+        // Interrupt the long press(it is completed)
+        longPressRecognizer.enabled = NO;
+        longPressRecognizer.enabled = YES;
+    }
+}
+
 -(void)update:(CFTimeInterval)currentTime {
     if (_lastUpdateTimeInterval) {
         _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
     }
     
-    if( currentTime - _lastMissileAdded > 1)
-    {
-        _lastMissileAdded = currentTime + 1;
-    }
-    
     if (_isLongPressActive) {
-        _longPressDuration += _timeSinceLastUpdate;
-        NSLog(@"%f", _longPressDuration);
-        
-        if (_longPressDuration >= ChargeAttackDuration) {
-            // Interrupt the long press(it is completed)
-            longPressRecognizer.enabled = NO;
-            longPressRecognizer.enabled = YES;
-        }
+        [self chargeLongPress];
     }
     
     [background moveByTimeSinceLastUpdate:_timeSinceLastUpdate];

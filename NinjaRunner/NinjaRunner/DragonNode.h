@@ -7,9 +7,11 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "EnemyNode.h"
 
-@interface DragonNode : SKSpriteNode
+@interface DragonNode : EnemyNode
 
-+ (instancetype) dragonWithPosition:(CGPoint)position;
-
++ (instancetype)dragonWithPosition:(CGPoint)position
+                          velocity:(CGVector)velocity
+                            health:(NSInteger)health;
 @end
