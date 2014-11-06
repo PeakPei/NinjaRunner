@@ -121,7 +121,7 @@
         text = PowerAttackText;
     } else {
         NSTimeInterval cooldownLeft = ninja.powerAttackCooldown - ninja.lastPowerAttackAgo;
-        text = [NSString stringWithFormat:@"%@ %.02f", PowerAttackOnCdText, cooldownLeft];
+        text = [NSString stringWithFormat:@"%@ %.02fsec", PowerAttackOnCdText, cooldownLeft];
     }
     
     ChargingNode *powerAttackCharge = [ChargingNode chargingNodeWithPosition:self.center text:text];
@@ -171,6 +171,7 @@
         
         if (ninja.lastPowerAttackAgo > ninja.powerAttackCooldown) {
             ninja.powerAttackUsedAfterCd = NO;
+            ninja.lastPowerAttackAgo = 0;
         }
     }
     

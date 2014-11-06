@@ -32,7 +32,7 @@
     ninja.jumpsInProgressCount = 0;
     ninja.damage = NinjaDamage;
     
-    ninja.powerAttackCooldown = 15;
+    ninja.powerAttackCooldown = 7;
     ninja.lastPowerAttackAgo = 0;
     ninja.powerAttackUsedAfterCd = NO;
     

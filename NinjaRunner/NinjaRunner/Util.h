@@ -22,7 +22,7 @@ static const CGFloat ChargeAttackDuration = 2.0;
 static const CGFloat NinjaPositionXPercent = 0.15;
 static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
 static const NSInteger NinjaDamage = 20;
-static const NSTimeInterval NinjaPowerAttackDuration = 10;
+static const NSTimeInterval NinjaPowerAttackDuration = 4;
 
 static const NSInteger ProjectileVelocityX = 500;
 
