@@ -14,11 +14,11 @@ static NSString *NinjaJumpActionKey = @"Jump";
 
 + (instancetype) ninjaWithPosition:(CGPoint)position inScene:(SKScene *)scene;
 
-@property (nonatomic) NSInteger jumpsInProgressCount;
-@property (nonatomic) NSInteger damage;
-@property (nonatomic) NSTimeInterval powerAttackCooldown;
-@property (nonatomic) NSTimeInterval lastPowerAttackAgo;
-@property (nonatomic) BOOL powerAttackUsedAfterCd;
+@property (nonatomic, assign) NSInteger jumpsInProgressCount;
+@property (nonatomic, assign) NSInteger damage;
+@property (nonatomic, assign) NSTimeInterval powerAttackCooldown;
+@property (nonatomic, assign) NSTimeInterval lastPowerAttackAgo;
+@property (nonatomic, assign) BOOL powerAttackUsedAfterCd;
 
 - (void) jump;
 - (void) attack;

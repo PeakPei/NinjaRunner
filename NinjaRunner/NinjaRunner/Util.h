@@ -15,14 +15,19 @@ static const NSInteger BackgroundSpeed = -150;
 static const CGFloat BackgroundLandHeightPercent = 0.15;
 
 static const CGFloat MarginPercent = 0.013;
-static const CGFloat ButtonSizePercent = 0.09;
 
-static const CGFloat ChargeAttackDuration = 2.0;
+static const CGFloat FlyingEnemyYPercent = 0.80;
+
+static const CGFloat ChargeAttackDuration = 1.0;
+
+static const NSTimeInterval EnemySpawnTimeInterval = 2.7;
+static const CGFloat DragonVelocityX = -150;
+static const NSInteger DragonHealth = 60;
 
 static const CGFloat NinjaPositionXPercent = 0.15;
 static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
 static const NSInteger NinjaDamage = 20;
-static const NSTimeInterval NinjaPowerAttackDuration = 4;
+static const NSTimeInterval NinjaPowerAttackDuration = 5;
 
 static const NSInteger ProjectileVelocityX = 500;
 
@@ -38,6 +43,10 @@ static NSString *PowerAttackText = @"Power Attack!";
 static NSString *PowerAttackOnCdText = @"Cooldown";
 
 static NSString *ChargedProjectileFilePath;
+
+typedef NS_ENUM(NSUInteger, EnemyType) {
+    EnemyTypeDragon
+};
 
 typedef NS_OPTIONS(NSUInteger, CollisionCategory) {
     CollisionCategoryEnemy = 1 << 0,

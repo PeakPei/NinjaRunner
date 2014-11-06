@@ -12,6 +12,7 @@
 
 + (instancetype) projectileAtPosition:(CGPoint)position;
 
-@property (nonatomic) NSInteger damage;
+@property (nonatomic, assign) NSInteger damage;
+@property (nonatomic, strong) SKEmitterNode *chargedEmitter;
 
 @end

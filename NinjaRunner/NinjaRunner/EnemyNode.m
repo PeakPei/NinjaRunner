@@ -27,7 +27,7 @@
     self.physicsBody.affectedByGravity = NO;
     self.physicsBody.velocity = velocity;
     self.physicsBody.categoryBitMask = CollisionCategoryEnemy;
-    self.physicsBody.collisionBitMask = CollisionCategoryNinja;
+    self.physicsBody.collisionBitMask = 0;
     self.physicsBody.contactTestBitMask = CollisionCategoryNinja | CollisionCategoryProjectile;
 }
 

@@ -12,14 +12,14 @@
 
 @interface NinjaNode ()
 
-@property (nonatomic) SKAction *runAnimation;
-@property (nonatomic) SKAction *jumpAnimation;
-@property (nonatomic) SKAction *attackAnimation;
+@property (nonatomic, strong) SKAction *runAnimation;
+@property (nonatomic, strong) SKAction *jumpAnimation;
+@property (nonatomic, strong) SKAction *attackAnimation;
 
-@property (nonatomic) float jumpVelocityY;
+@property (nonatomic, assign) float jumpVelocityY;
 
-@property (nonatomic) BOOL isCharged;
-@property (nonatomic) BOOL isPowerAttackEnabled;
+@property (nonatomic, assign) BOOL isCharged;
+@property (nonatomic, assign) BOOL isPowerAttackEnabled;
 
 @end
 
@@ -32,7 +32,7 @@
     ninja.jumpsInProgressCount = 0;
     ninja.damage = NinjaDamage;
     
-    ninja.powerAttackCooldown = 7;
+    ninja.powerAttackCooldown = 20;
     ninja.lastPowerAttackAgo = 0;
     ninja.powerAttackUsedAfterCd = NO;
     
@@ -103,9 +103,10 @@
         SKEmitterNode *chargedProjectile = [self createChargedProjectile];
         chargedProjectile.position = projectilePosition;
         [self.parent addChild:chargedProjectile];
+        projectile.chargedEmitter = chargedProjectile;
     }
     
-    projectile.damage = _isCharged ? self.damage * 2 : self.damage;
+    projectile.damage = _isCharged || _isPowerAttackEnabled ? self.damage * 2 : self.damage;
     _isCharged = NO;
     
     [self runAction:_attackAnimation];

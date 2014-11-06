@@ -11,9 +11,6 @@
 
 @interface GameScene : SKScene <SKPhysicsContactDelegate, NSObject>{
 
-    NSTimer *jumpTimer;
-    float factor;
-
 }
 
 @end

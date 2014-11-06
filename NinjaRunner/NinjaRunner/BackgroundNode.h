@@ -12,6 +12,6 @@
 
 + (instancetype) backgroundAtPosition:(CGPoint)position parent:(SKScene *)parent;
 
-- (void)moveByTimeSinceLastUpdate:(NSTimeInterval)timeSinceLastUpdate;
+- (void) moveByTimeSinceLastUpdate:(NSTimeInterval)timeSinceLastUpdate;
 
 @end

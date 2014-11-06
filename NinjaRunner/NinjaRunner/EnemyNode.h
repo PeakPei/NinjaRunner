@@ -15,6 +15,6 @@
                            velocity:(CGVector)velocity
                              health:(NSInteger)health;
 
-@property (nonatomic) NSInteger health;
+@property (nonatomic, assign) NSInteger health;
 
 @end

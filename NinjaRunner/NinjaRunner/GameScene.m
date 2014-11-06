@@ -18,15 +18,18 @@
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
-@property (nonatomic) NSTimeInterval timeSinceLastUpdate;
+@property (nonatomic, assign) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic, assign) NSTimeInterval timeSinceLastUpdate;
+@property (nonatomic, assign) NSTimeInterval timeSinceEnemyAdded;
 
-@property (nonatomic) NSTimeInterval longPressDuration;
-@property (nonatomic) BOOL isLongPressActive;
+@property (nonatomic, assign) BOOL gameOver;
 
-@property (nonatomic) CGFloat groundHeight;
+@property (nonatomic, assign) NSTimeInterval longPressDuration;
+@property (nonatomic, assign) BOOL isLongPressActive;
 
-@property (nonatomic) CGPoint center;
+@property (nonatomic, assign) CGFloat groundHeight;
+
+@property (nonatomic, assign) CGPoint center;
 
 @end
 
@@ -39,11 +42,17 @@
     BackgroundNode *background;
     NinjaNode *ninja;
     ChargingNode *chargingNode;
+    
+    NSString *bloodParticlesFilePath;
 }
 
 - (void) didMoveToView:(SKView *)view {
     /* Setup your scene here */
     self.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    _timeSinceEnemyAdded = 0;
+    _gameOver = NO;
+    
+    bloodParticlesFilePath = [[NSBundle mainBundle] pathForResource:@"BloodParticles" ofType:@"sks"];
     [self setupGestureRecognizers];
     
     CGFloat sceneGravity = -self.frame.size.height * GravityMultiplier; // ~8
@@ -63,7 +72,7 @@
     ninja = [NinjaNode ninjaWithPosition:CGPointMake(ninjaPositionX, _groundHeight) inScene:self];
     [self addChild:ninja];
     
-    
+    [self addEnemy];
 }
 
 - (void) setupGestureRecognizers {
@@ -149,6 +158,29 @@
         ninja.jumpsInProgressCount = 0;
         [ninja removeActionForKey:NinjaJumpActionKey];
     }
+    
+    if (firstBody.categoryBitMask == CollisionCategoryEnemy
+        && secondBody.categoryBitMask == CollisionCategoryProjectile) {
+        EnemyNode *enemy = (EnemyNode *)firstBody.node;
+        ProjectileNode *projectile = (ProjectileNode *)secondBody.node;
+        
+        enemy.health -= projectile.damage;
+        
+        if (enemy.health <= 0) {
+            [enemy removeFromParent];
+        }
+        
+        if (projectile.chargedEmitter != nil) {
+            [projectile.chargedEmitter removeFromParent];
+        }
+        
+        SKEmitterNode *bloodParticles = [NSKeyedUnarchiver unarchiveObjectWithFile:bloodParticlesFilePath];
+        bloodParticles.position = enemy.position;
+        bloodParticles.zPosition = -1;
+        [self addChild:bloodParticles];
+        
+        [projectile removeFromParent];
+    }
 }
 
 - (void) chargeLongPress {
@@ -161,9 +193,31 @@
     }
 }
 
+- (void) addEnemy {
+    EnemyNode *enemy;
+    float enemyX;
+    float enemyY;
+    EnemyType enemyType = (EnemyType)arc4random_uniform(3);
+    
+    //if (enemyType == EnemyTypeDragon) {
+        enemyY = self.frame.size.height * FlyingEnemyYPercent;
+        enemy = [DragonNode dragonWithPosition:CGPointZero velocity:CGVectorMake(DragonVelocityX, 0) health:DragonHealth];
+    //}
+    
+    enemyX = self.frame.size.width + enemy.frame.size.width / 2;
+    enemy.position = CGPointMake(enemyX, enemyY);
+    [self addChild:enemy];
+}
+
 -(void)update:(CFTimeInterval)currentTime {
     if (_lastUpdateTimeInterval) {
         _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
+        _timeSinceEnemyAdded += _timeSinceLastUpdate;
+    }
+    
+    if (_timeSinceEnemyAdded > EnemySpawnTimeInterval && !_gameOver) {
+        [self addEnemy];
+        _timeSinceEnemyAdded = 0;
     }
     
     if (ninja.powerAttackUsedAfterCd) {

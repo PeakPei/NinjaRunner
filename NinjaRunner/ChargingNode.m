@@ -20,7 +20,7 @@
     chargingLabel.name = @"ChargingLabel";
     chargingLabel.text = text;
     chargingLabel.fontColor = [SKColor orangeColor];
-    chargingLabel.alpha = 0.3;
+    chargingLabel.alpha = 0.4;
     chargingLabel.fontSize = 25;
     
     SKAction *scaleUp = [SKAction scaleTo:1 duration:0.5];

@@ -29,6 +29,7 @@
 		24968BA51A07B8D600E679C5 /* DragonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 24968BA41A07B8D600E679C5 /* DragonNode.m */; };
 		24AF0FF61A0AC99A00A57AE1 /* ChargedProjectile.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */; };
 		24AF0FF71A0AC99A00A57AE1 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 24AF0FF51A0AC99A00A57AE1 /* spark.png */; };
+		24C1E50A1A0C131700163112 /* BloodParticles.sks in Resources */ = {isa = PBXBuildFile; fileRef = 24C1E5091A0C131700163112 /* BloodParticles.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		06342ABF1A081BD0007D2256 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
-		2421CAD81A07A989000DB144 /* NinjaRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = NinjaRunner.app; path = "/Users/nikolabozhkov/Projects/NinjaRunner/NinjaRunner/build/Debug-iphoneos/NinjaRunner.app"; sourceTree = "<absolute>"; };
 		2421CADC1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2421CADD1A07A989000DB144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2421CADF1A07A989000DB144 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,7 +56,6 @@
 		2421CAEB1A07A989000DB144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2421CAED1A07A989000DB144 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2421CAF01A07A989000DB144 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2421CAF61A07A989000DB144 /* NinjaRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NinjaRunnerTests.xctest; path = "/Users/nikolabozhkov/Projects/NinjaRunner/NinjaRunner/build/Debug-iphoneos/NinjaRunnerTests.xctest"; sourceTree = "<absolute>"; };
 		2421CAFB1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2421CAFC1A07A989000DB144 /* NinjaRunnerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NinjaRunnerTests.m; sourceTree = "<group>"; };
 		243D644E1A092D2900166A00 /* BackgroundNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundNode.h; path = NinjaRunner/BackgroundNode.h; sourceTree = "<group>"; };
@@ -75,12 +74,15 @@
 		247A8A181A0BAF5B0095A6C9 /* EnemyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyNode.m; sourceTree = "<group>"; };
 		247C75331A08FD7C009E0F82 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		247C75341A08FD7C009E0F82 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		24967B7B1A0BF6CD00569571 /* NinjaRunner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NinjaRunner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24967B7C1A0BF6CD00569571 /* NinjaRunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NinjaRunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24968B9E1A07B25B00E679C5 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		24968BA01A07B39300E679C5 /* NinjaNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NinjaNode.h; sourceTree = "<group>"; };
 		24968BA31A07B8D600E679C5 /* DragonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragonNode.h; sourceTree = "<group>"; };
 		24968BA41A07B8D600E679C5 /* DragonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragonNode.m; sourceTree = "<group>"; };
 		24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ChargedProjectile.sks; sourceTree = "<group>"; };
 		24AF0FF51A0AC99A00A57AE1 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		24C1E5091A0C131700163112 /* BloodParticles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BloodParticles.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,8 @@
 			children = (
 				2421CADA1A07A989000DB144 /* NinjaRunner */,
 				2421CAF91A07A989000DB144 /* NinjaRunnerTests */,
+				24967B7B1A0BF6CD00569571 /* NinjaRunner.app */,
+				24967B7C1A0BF6CD00569571 /* NinjaRunnerTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +124,7 @@
 				2421CAE31A07A989000DB144 /* GameScene.m */,
 				24968B9E1A07B25B00E679C5 /* Sprites.atlas */,
 				2421CAED1A07A989000DB144 /* Images.xcassets */,
+				24C1E5091A0C131700163112 /* BloodParticles.sks */,
 				24AF0FF41A0AC99A00A57AE1 /* ChargedProjectile.sks */,
 				24AF0FF51A0AC99A00A57AE1 /* spark.png */,
 				2421CADB1A07A989000DB144 /* Supporting Files */,
@@ -226,7 +231,7 @@
 			);
 			name = NinjaRunner;
 			productName = NinjaRunner;
-			productReference = 2421CAD81A07A989000DB144 /* NinjaRunner.app */;
+			productReference = 24967B7B1A0BF6CD00569571 /* NinjaRunner.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2421CAF51A07A989000DB144 /* NinjaRunnerTests */ = {
@@ -244,7 +249,7 @@
 			);
 			name = NinjaRunnerTests;
 			productName = NinjaRunnerTests;
-			productReference = 2421CAF61A07A989000DB144 /* NinjaRunnerTests.xctest */;
+			productReference = 24967B7C1A0BF6CD00569571 /* NinjaRunnerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -289,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C1E50A1A0C131700163112 /* BloodParticles.sks in Resources */,
 				2421CAF11A07A989000DB144 /* LaunchScreen.xib in Resources */,
 				24AF0FF61A0AC99A00A57AE1 /* ChargedProjectile.sks in Resources */,
 				2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */,
