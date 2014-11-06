@@ -35,6 +35,7 @@ static NSString *ChargingNodeName = @"ChargingNode";
 static NSString *ChargingLabelText = @"Charging...";
 static NSString *ChargedLabelText = @"Charged!";
 static NSString *PowerAttackText = @"Power Attack!";
+static NSString *PowerAttackOnCdText = @"Cooldown";
 
 static NSString *ChargedProjectileFilePath;
 

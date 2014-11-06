@@ -34,6 +34,7 @@
     
     ninja.powerAttackCooldown = 15;
     ninja.lastPowerAttackAgo = 0;
+    ninja.powerAttackUsedAfterCd = NO;
     
     [ninja setupPhysicsBody];
     [ninja setupRunAnimation];
@@ -117,6 +118,7 @@
 
 - (void) enablePowerAttack {
     _isPowerAttackEnabled = YES;
+    _powerAttackUsedAfterCd = YES;
     
     SKAction *disablePowerAttack = [SKAction runBlock:^{
         _isPowerAttackEnabled = NO;

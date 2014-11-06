@@ -114,17 +114,19 @@
     }
 }
 
-// TODO: Finish
 - (void) handleDoubleTouch:(UITapGestureRecognizer *)recognizer {
-    if (ninja.lastPowerAttackAgo > ninja.powerAttackCooldown) {
+    NSString *text;
+    if (!ninja.powerAttackUsedAfterCd) {
         [ninja enablePowerAttack];
+        text = PowerAttackText;
     } else {
-        
+        NSTimeInterval cooldownLeft = ninja.powerAttackCooldown - ninja.lastPowerAttackAgo;
+        text = [NSString stringWithFormat:@"%@ %.02f", PowerAttackOnCdText, cooldownLeft];
     }
     
-    ChargingNode *powerAttackCharge = [ChargingNode chargingNodeWithPosition:self.center text:PowerAttackText];
+    ChargingNode *powerAttackCharge = [ChargingNode chargingNodeWithPosition:self.center text:text];
     [self addChild:powerAttackCharge];
-    [powerAttackCharge finishChargingWithText:PowerAttackText];
+    [powerAttackCharge finishChargingWithText:text];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -162,6 +164,14 @@
 -(void)update:(CFTimeInterval)currentTime {
     if (_lastUpdateTimeInterval) {
         _timeSinceLastUpdate = currentTime - _lastUpdateTimeInterval;
+    }
+    
+    if (ninja.powerAttackUsedAfterCd) {
+        ninja.lastPowerAttackAgo += _timeSinceLastUpdate;
+        
+        if (ninja.lastPowerAttackAgo > ninja.powerAttackCooldown) {
+            ninja.powerAttackUsedAfterCd = NO;
+        }
     }
     
     if (_isLongPressActive) {
