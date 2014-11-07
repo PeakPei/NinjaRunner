@@ -73,7 +73,7 @@
     SKSpriteNode *backgroundImage = (SKSpriteNode *)[background childNodeWithName:BackgroundSpriteName];
     _groundHeight = backgroundImage.size.height * BackgroundLandHeightPercent;
     
-    hud = [HudNode hudAtPosition:CGPointMake(0, self.frame.size.height - 20) withFrame:self.frame];
+    hud = [HudNode hudAtPosition:CGPointMake(30, self.frame.size.height - 20) withFrame:self.frame];
     [self addChild:hud];
     
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];

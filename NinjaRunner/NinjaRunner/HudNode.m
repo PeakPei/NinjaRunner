@@ -23,7 +23,7 @@
     scoreLabel.fontSize = 24;
     scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
     float margin = frame.size.width * MarginPercent;
-    scoreLabel.position = CGPointMake(frame.size.width - margin * 2, - margin);
+    scoreLabel.position = CGPointMake(0, - margin);
     [hud addChild:scoreLabel];
     
     return hud;
