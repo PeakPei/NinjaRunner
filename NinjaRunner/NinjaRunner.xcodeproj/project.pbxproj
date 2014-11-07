@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0632FCFD1A0D63AE00C3830B /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0632FCFC1A0D63AE00C3830B /* BackgroundMusic.mp3 */; };
+		0632FCFF1A0D777800C3830B /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0632FCFE1A0D777800C3830B /* BackgroundMusic.mp3 */; };
 		06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 06342ABF1A081BD0007D2256 /* NinjaNode.m */; };
 		2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */; };
 		2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5811A0CE3F200D62363 /* EnemyFactory.m */; };
@@ -49,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0632FCFC1A0D63AE00C3830B /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = ../../../../../../../../../Downloads/BackgroundMusic.mp3; sourceTree = "<group>"; };
+		0632FCFE1A0D777800C3830B /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = ../../../NinjaRunnerFriday/NinjaRunner/NinjaRunner/NinjaRunnerFriday/NinjaRunner/NinjaRunner/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		06342ABF1A081BD0007D2256 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
 		2419D57C1A0CE10C00D62363 /* MonsterBullNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBullNode.h; sourceTree = "<group>"; };
 		2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBullNode.m; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		2421CADA1A07A989000DB144 /* NinjaRunner */ = {
 			isa = PBXGroup;
 			children = (
-				0632FCFC1A0D63AE00C3830B /* BackgroundMusic.mp3 */,
+				0632FCFE1A0D777800C3830B /* BackgroundMusic.mp3 */,
 				243D64541A09365500166A00 /* Utility */,
 				244280631A0A48B2005F6A87 /* HUD */,
 				247A8A0C1A0B84E20095A6C9 /* NonInteractiveNodes */,
@@ -336,7 +336,7 @@
 				2421CAEE1A07A989000DB144 /* Images.xcassets in Resources */,
 				24AF0FF71A0AC99A00A57AE1 /* spark.png in Resources */,
 				2421CAE61A07A989000DB144 /* GameScene.sks in Resources */,
-				0632FCFD1A0D63AE00C3830B /* BackgroundMusic.mp3 in Resources */,
+				0632FCFF1A0D777800C3830B /* BackgroundMusic.mp3 in Resources */,
 				2421CAEC1A07A989000DB144 /* Main.storyboard in Resources */,
 				24968B9F1A07B25B00E679C5 /* Sprites.atlas in Resources */,
 			);
