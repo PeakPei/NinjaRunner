@@ -13,5 +13,6 @@
 
 + (instancetype)dragonWithPosition:(CGPoint)position
                           velocity:(CGVector)velocity
-                            health:(NSInteger)health;
+                            health:(NSInteger)health
+                     pointsForKill:(NSInteger)points;
 @end

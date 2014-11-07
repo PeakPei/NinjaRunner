@@ -143,28 +143,4 @@
     return chargedProjectile;
 }
 
-//-(void) attachSecondJumpLayer{
-//    SKTexture *jumpTexture = [SKTexture textureWithImageNamed:@"ninja_jump_2"];
-//    [self setTexture:jumpTexture];
-//}
-
-//-(void) jumpLower{
-//    NSArray *jumpTextures = @[
-//                              [SKTexture textureWithImageNamed:@"ninja_jump_low_1"],
-//                              [SKTexture textureWithImageNamed:@"ninja_jump_low_2"],
-//                              [SKTexture textureWithImageNamed:@"ninja_jump_low_3"]
-//                              ];
-//    SKTexture *jumpTexture = [SKTexture textureWithImageNamed:@"ninja_jump_low_1"];
-//    [self setTexture:jumpTexture];
-//    
-//    self.position = CGPointMake(150, 160);
-//    SKAction *jumpingLowNinjaAnimation = [SKAction animateWithTextures:jumpTextures timePerFrame:0.07];
-//    [self runAction:[SKAction repeatAction:jumpingLowNinjaAnimation count:1]];
-//
-//}
-
-//-(void)jumpWithFactor:(float)factor{
-//    self.physicsBody.velocity = CGVectorMake(0.0, 500*factor);
-//}
-
 @end

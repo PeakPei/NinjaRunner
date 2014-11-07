@@ -11,7 +11,7 @@
 
 static const CGFloat GravityMultiplier = 0.025;
 
-static const NSInteger BackgroundSpeed = -150;
+static const NSInteger BackgroundSpeed = -110;
 static const CGFloat BackgroundLandHeightPercent = 0.15;
 
 static const CGFloat MarginPercent = 0.013;
@@ -21,8 +21,13 @@ static const CGFloat FlyingEnemyYPercent = 0.80;
 static const CGFloat ChargeAttackDuration = 1.0;
 
 static const NSTimeInterval EnemySpawnTimeInterval = 2.7;
-static const CGFloat DragonVelocityX = -150;
-static const NSInteger DragonHealth = 60;
+static const CGFloat DragonVelocityX = -120;
+static const NSInteger DragonHealth = 80;
+static const NSInteger DragonPoints = 100;
+
+static const CGFloat MonsterBullVelocityX = -250;
+static const NSInteger MonsterBullHealth = 100;
+static const NSInteger MonsterBullPoints = 30;
 
 static const CGFloat NinjaPositionXPercent = 0.15;
 static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
@@ -45,7 +50,8 @@ static NSString *PowerAttackOnCdText = @"Cooldown";
 static NSString *ChargedProjectileFilePath;
 
 typedef NS_ENUM(NSUInteger, EnemyType) {
-    EnemyTypeDragon
+    EnemyTypeDragon = 0,
+    EnemyTypeMonsterBull = 1
 };
 
 typedef NS_OPTIONS(NSUInteger, CollisionCategory) {

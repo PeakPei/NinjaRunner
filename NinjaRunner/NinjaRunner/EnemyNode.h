@@ -13,8 +13,12 @@
 + (instancetype)enemyWithImageNamed:(NSString *)image
                            position:(CGPoint)position
                            velocity:(CGVector)velocity
-                             health:(NSInteger)health;
+                             health:(NSInteger)health
+                      pointsForKill:(NSInteger)points;
 
 @property (nonatomic, assign) NSInteger health;
+@property (nonatomic, assign) NSInteger pointsForKill;
+
+- (void) setupPhysicsBodyPropertiesWithVelocity:(CGVector)velocity;
 
 @end

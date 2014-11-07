@@ -10,8 +10,8 @@
 
 @implementation DragonNode
 
-+ (instancetype)dragonWithPosition:(CGPoint)position velocity:(CGVector)velocity health:(NSInteger)health {
-    DragonNode *dragon = [super enemyWithImageNamed:@"dragon_1" position:position velocity:velocity health:health];
++ (instancetype)dragonWithPosition:(CGPoint)position velocity:(CGVector)velocity health:(NSInteger)health pointsForKill:(NSInteger)points {
+    DragonNode *dragon = [super enemyWithImageNamed:@"dragon_1" position:position velocity:velocity health:health pointsForKill:points];
     
     NSArray *textures = @[[SKTexture textureWithImageNamed:@"dragon_1"],
                           [SKTexture textureWithImageNamed:@"dragon_2"],

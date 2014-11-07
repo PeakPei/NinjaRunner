@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		06342AC01A081BD0007D2256 /* NinjaNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 06342ABF1A081BD0007D2256 /* NinjaNode.m */; };
+		2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */; };
+		2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2419D5811A0CE3F200D62363 /* EnemyFactory.m */; };
 		2421CADE1A07A989000DB144 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CADD1A07A989000DB144 /* main.m */; };
 		2421CAE11A07A989000DB144 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE01A07A989000DB144 /* AppDelegate.m */; };
 		2421CAE41A07A989000DB144 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 2421CAE31A07A989000DB144 /* GameScene.m */; };
@@ -44,6 +46,10 @@
 
 /* Begin PBXFileReference section */
 		06342ABF1A081BD0007D2256 /* NinjaNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NinjaNode.m; sourceTree = "<group>"; };
+		2419D57C1A0CE10C00D62363 /* MonsterBullNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterBullNode.h; sourceTree = "<group>"; };
+		2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterBullNode.m; sourceTree = "<group>"; };
+		2419D5801A0CE3F200D62363 /* EnemyFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyFactory.h; sourceTree = "<group>"; };
+		2419D5811A0CE3F200D62363 /* EnemyFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyFactory.m; sourceTree = "<group>"; };
 		2421CADC1A07A989000DB144 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2421CADD1A07A989000DB144 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2421CADF1A07A989000DB144 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +109,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2419D57F1A0CE11A00D62363 /* EnemyNodes */ = {
+			isa = PBXGroup;
+			children = (
+				247A8A171A0BAF5B0095A6C9 /* EnemyNode.h */,
+				247A8A181A0BAF5B0095A6C9 /* EnemyNode.m */,
+				24968BA31A07B8D600E679C5 /* DragonNode.h */,
+				24968BA41A07B8D600E679C5 /* DragonNode.m */,
+				2419D57C1A0CE10C00D62363 /* MonsterBullNode.h */,
+				2419D57D1A0CE10C00D62363 /* MonsterBullNode.m */,
+			);
+			name = EnemyNodes;
+			sourceTree = "<group>";
+		};
 		2421CACF1A07A989000DB144 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +187,8 @@
 		243D64541A09365500166A00 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				2419D5801A0CE3F200D62363 /* EnemyFactory.h */,
+				2419D5811A0CE3F200D62363 /* EnemyFactory.m */,
 				243D64511A0933F300166A00 /* VectorHelper.h */,
 				243D64521A0933F300166A00 /* VectorHelper.m */,
 				247C75331A08FD7C009E0F82 /* Util.h */,
@@ -202,10 +223,7 @@
 		247A8A0E1A0B85640095A6C9 /* InteractiveNodes */ = {
 			isa = PBXGroup;
 			children = (
-				247A8A171A0BAF5B0095A6C9 /* EnemyNode.h */,
-				247A8A181A0BAF5B0095A6C9 /* EnemyNode.m */,
-				24968BA31A07B8D600E679C5 /* DragonNode.h */,
-				24968BA41A07B8D600E679C5 /* DragonNode.m */,
+				2419D57F1A0CE11A00D62363 /* EnemyNodes */,
 				24968BA01A07B39300E679C5 /* NinjaNode.h */,
 				06342ABF1A081BD0007D2256 /* NinjaNode.m */,
 				2442806B1A0A572F005F6A87 /* ProjectileNode.h */,
@@ -332,7 +350,9 @@
 				247C75351A08FD7C009E0F82 /* Util.m in Sources */,
 				244280621A0A48A3005F6A87 /* ButtonNode.m in Sources */,
 				243D64531A0933F300166A00 /* VectorHelper.m in Sources */,
+				2419D57E1A0CE10C00D62363 /* MonsterBullNode.m in Sources */,
 				2421CADE1A07A989000DB144 /* main.m in Sources */,
+				2419D5821A0CE3F200D62363 /* EnemyFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

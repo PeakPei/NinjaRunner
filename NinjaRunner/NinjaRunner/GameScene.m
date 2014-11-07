@@ -15,6 +15,8 @@
 #import "ButtonNode.h"
 #import "ProjectileNode.h"
 #import "ChargingNode.h"
+#import "MonsterBullNode.h"
+#import "EnemyFactory.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -26,10 +28,6 @@
 
 @property (nonatomic, assign) NSTimeInterval longPressDuration;
 @property (nonatomic, assign) BOOL isLongPressActive;
-
-@property (nonatomic, assign) CGFloat groundHeight;
-
-@property (nonatomic, assign) CGPoint center;
 
 @end
 
@@ -151,6 +149,11 @@
         firstBody = contact.bodyB;
         secondBody = contact.bodyA;
     }
+    
+    if (firstBody.categoryBitMask == CollisionCategoryEnemy
+        && secondBody.categoryBitMask == CollisionCategoryNinja) {
+        NSLog(@"contact");
+    }
 
     // Reset jumps count on ground touch
     if (firstBody.categoryBitMask == CollisionCategoryNinja
@@ -194,18 +197,9 @@
 }
 
 - (void) addEnemy {
-    EnemyNode *enemy;
-    float enemyX;
-    float enemyY;
-    EnemyType enemyType = (EnemyType)arc4random_uniform(3);
+    EnemyType enemyType = (EnemyType)arc4random_uniform(2);
+    EnemyNode *enemy = [EnemyFactory createEnemyWithType:enemyType inScene:self];
     
-    //if (enemyType == EnemyTypeDragon) {
-        enemyY = self.frame.size.height * FlyingEnemyYPercent;
-        enemy = [DragonNode dragonWithPosition:CGPointZero velocity:CGVectorMake(DragonVelocityX, 0) health:DragonHealth];
-    //}
-    
-    enemyX = self.frame.size.width + enemy.frame.size.width / 2;
-    enemy.position = CGPointMake(enemyX, enemyY);
     [self addChild:enemy];
 }
 
@@ -237,42 +231,5 @@
     
     self.lastUpdateTimeInterval = currentTime;
 }
-
-//Method for the enemies move
-//- (void)moveObstacle
-//{
-//    NSArray *nodes = self.children;
-//    
-//    for(SKNode * node in nodes){
-//        if (![node.name  isEqual: @"background"] && ![node.name  isEqual: @"ninja"] && ![node.name isEqual:nil]) {
-//            SKSpriteNode *ob = (SKSpriteNode *) node;
-//            CGPoint obVelocity = CGPointMake(-OBJECT_VELOCITY, 0);
-//            CGPoint amtToMove = CGPointMultiplyScalar(obVelocity,_dt);
-//            
-//            ob.position = CGPointAdd(ob.position, amtToMove);
-//            if(ob.position.x < -100)
-//            {
-//                [ob removeFromParent];
-//            }
-//        }
-//    }
-//}
-
-//-(void)moveDragon{
-//    if(dragon.position.x <= ninja.position.x){
-//        [dragon removeFromParent];
-//        //[self performSelector:@selector(addEnemy) withObject:nil afterDelay:0.3 ];
-//        [self addEnemy];
-//    }
-////    if(dragon.position.x == self.view.bounds.size.width/2 || dragon.position.x + 15 == self.view.bounds.size.width/2){
-////        [self addEnemy];
-////    }
-//    if(dragon.position.x > ninja.position.x){
-//        //dragon.position.x = -self.view.bounds.size.width/2;
-//        CGPoint pos = dragon.position;
-//        pos.x = dragon.position.x - 15;
-//        dragon.position = pos;
-//    }
-//}
 
 @end

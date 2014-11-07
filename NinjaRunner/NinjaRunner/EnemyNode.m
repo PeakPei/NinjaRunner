@@ -11,11 +11,16 @@
 
 @implementation EnemyNode
 
-+ (instancetype)enemyWithImageNamed:(NSString *)image position:(CGPoint)position velocity:(CGVector)velocity health:(NSInteger)health {
++ (instancetype)enemyWithImageNamed:(NSString *)image
+                           position:(CGPoint)position
+                           velocity:(CGVector)velocity
+                             health:(NSInteger)health
+                      pointsForKill:(NSInteger)points {
     EnemyNode *enemy = [self spriteNodeWithImageNamed:image];
     
     enemy.position = position;
     enemy.health = health;
+    enemy.pointsForKill = points;
     
     [enemy setupPhysicsBodyWithVelocity:velocity];
     
@@ -24,6 +29,10 @@
 
 - (void) setupPhysicsBodyWithVelocity:(CGVector)velocity {
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
+    [self setupPhysicsBodyPropertiesWithVelocity:velocity];
+}
+
+- (void) setupPhysicsBodyPropertiesWithVelocity:(CGVector)velocity {
     self.physicsBody.affectedByGravity = NO;
     self.physicsBody.velocity = velocity;
     self.physicsBody.categoryBitMask = CollisionCategoryEnemy;
