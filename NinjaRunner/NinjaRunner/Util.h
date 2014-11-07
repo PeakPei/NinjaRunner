@@ -19,7 +19,7 @@ static const CGFloat MarginPercent = 0.013;
 static const CGFloat ChargeAttackDuration = 1.0;
 static const CGFloat ChargeAttackDamageMultiplier = 5;
 
-static const NSTimeInterval EnemySpawnTimeInterval = 1.5;
+static const NSTimeInterval EnemySpawnTimeInterval = 1.75;
 static const NSInteger DragonSpawnChance = 10;
 static const CGFloat DragonYPercent = 0.80;
 static const CGFloat DragonVelocityX = -120;
@@ -36,8 +36,8 @@ static const NSInteger EagleHealth = 40;
 static const NSInteger EaglePoints = 80;
 
 static const CGFloat EarthDragonVelocityX = -200;
-static const NSInteger EarthDragonHealth = 1000;
-static const NSInteger EarthDragonPoints = 300;
+static const NSInteger EarthDragonHealth = 0;
+static const NSInteger EarthDragonPoints = 0;
 
 static const CGFloat NinjaPositionXPercent = 0.15;
 static const CGFloat NinjaJumpVelocityMultiplier = 1.6;
@@ -56,6 +56,8 @@ static NSString *ChargingLabelText = @"Charging...";
 static NSString *ChargedLabelText = @"Charged!";
 static NSString *PowerAttackText = @"Power Attack!";
 static NSString *PowerAttackOnCdText = @"Cooldown";
+
+static NSString *ScoreLabelName = @"Score";
 
 static NSString *ChargedProjectileFilePath;
 

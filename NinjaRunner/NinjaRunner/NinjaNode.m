@@ -15,6 +15,7 @@
 @property (nonatomic, strong) SKAction *runAnimation;
 @property (nonatomic, strong) SKAction *jumpAnimation;
 @property (nonatomic, strong) SKAction *attackAnimation;
+@property (nonatomic, strong) SKAction *dyingAnimation;
 
 @property (nonatomic, assign) float jumpVelocityY;
 
@@ -40,6 +41,7 @@
     [ninja setupRunAnimation];
     [ninja setupJumpAnimation];
     [ninja setupAttackAnimation];
+    [ninja setupDyingAnimation];
     
     [ninja runAction:[SKAction repeatActionForever:ninja.runAnimation]];
     
@@ -84,6 +86,15 @@
     _attackAnimation = [SKAction animateWithTextures:attackTextures timePerFrame:0.08];
 }
 
+- (void) setupDyingAnimation {
+    NSArray *dyingTextures = @[[SKTexture textureWithImageNamed:@"ninja_fall_1"],
+                               [SKTexture textureWithImageNamed:@"ninja_fall_2"],
+                               [SKTexture textureWithImageNamed:@"ninja_fall_3"],
+                               [SKTexture textureWithImageNamed:@"ninja_fall_4"]];
+    
+    _dyingAnimation = [SKAction animateWithTextures:dyingTextures timePerFrame:0.1];
+}
+
 - (void) jump {
     // Allow only 2 jumps at a time
     if (_jumpsInProgressCount < 2) {
@@ -111,6 +122,13 @@
     
     [self runAction:_attackAnimation];
     [self.parent addChild:projectile];
+}
+
+- (void) die {
+    [self removeAllActions];
+    self.xScale = 0.95;
+    self.yScale = 0.6;
+    [self runAction:_dyingAnimation];
 }
 
 - (void) chargeAttack {

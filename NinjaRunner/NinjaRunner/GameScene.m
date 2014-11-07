@@ -17,6 +17,7 @@
 #import "ChargingNode.h"
 #import "MonsterBullNode.h"
 #import "EnemyFactory.h"
+#import "HudNode.h"
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -40,6 +41,7 @@
     BackgroundNode *background;
     NinjaNode *ninja;
     ChargingNode *chargingNode;
+    HudNode *hud;
     
     NSString *bloodParticlesFilePath;
 }
@@ -62,6 +64,9 @@
     
     SKSpriteNode *backgroundImage = (SKSpriteNode *)[background childNodeWithName:BackgroundSpriteName];
     _groundHeight = backgroundImage.size.height * BackgroundLandHeightPercent;
+    
+    hud = [HudNode hudAtPosition:CGPointMake(0, self.frame.size.height - 20) withFrame:self.frame];
+    [self addChild:hud];
     
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];
     [self addChild:ground];
@@ -152,7 +157,10 @@
     
     if (firstBody.categoryBitMask == CollisionCategoryEnemy
         && secondBody.categoryBitMask == CollisionCategoryNinja) {
-        NSLog(@"contact");
+        if (!_gameOver) {
+            [self endGame];
+        }
+        _gameOver = YES;
     }
 
     // Reset jumps count on ground touch
@@ -171,6 +179,7 @@
         
         if (enemy.health <= 0) {
             [enemy removeFromParent];
+            [hud addPoints:enemy.pointsForKill];
         }
         
         if (projectile.chargedEmitter != nil) {
@@ -202,6 +211,26 @@
     [EnemyFactory createDragonByChance:DragonSpawnChance inScene:self];
     
     [self addChild:enemy];
+}
+
+- (void) endGame {
+    [self.view removeGestureRecognizer:tapRecognizer];
+    [self.view removeGestureRecognizer:longPressRecognizer];
+    [self.view removeGestureRecognizer:swipeUpRecognizer];
+    [self.view removeGestureRecognizer:swipeRightRecognizer];
+    
+    background.velocity = CGPointMake(0, 0);
+    [ninja die];
+    
+    [hud runAction:[SKAction fadeOutWithDuration:0.7]];
+    
+    SKLabelNode *endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura-CondensedExtraBold"];
+    endGameLabel.text = [NSString stringWithFormat:@"%li", hud.score];
+    endGameLabel.fontColor = [SKColor orangeColor];
+    endGameLabel.fontSize = 50;
+    endGameLabel.alpha = 0.7;
+    endGameLabel.position = _center;
+    [self addChild:endGameLabel];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
