@@ -17,6 +17,7 @@
 #import "ChargingNode.h"
 #import "MonsterBullNode.h"
 #import "EnemyFactory.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
 
@@ -28,6 +29,9 @@
 
 @property (nonatomic, assign) NSTimeInterval longPressDuration;
 @property (nonatomic, assign) BOOL isLongPressActive;
+
+@property (nonatomic, assign) BOOL isPlayingMusic;
+@property (nonatomic) AVAudioPlayer *backgroundMusic;
 
 @end
 
@@ -41,6 +45,9 @@
     NinjaNode *ninja;
     ChargingNode *chargingNode;
     
+    SKSpriteNode *musicButton;
+    SKSpriteNode *quitButton;
+    
     NSString *bloodParticlesFilePath;
 }
 
@@ -49,6 +56,7 @@
     self.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     _timeSinceEnemyAdded = 0;
     _gameOver = NO;
+    _isPlayingMusic = NO;
     
     bloodParticlesFilePath = [[NSBundle mainBundle] pathForResource:@"BloodParticles" ofType:@"sks"];
     [self setupGestureRecognizers];
@@ -71,6 +79,8 @@
     [self addChild:ninja];
     
     [self addEnemy];
+    
+    [self addChild: [self createSettingsButtonNode]];
 }
 
 - (void) setupGestureRecognizers {
@@ -137,6 +147,34 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
+    
+    if ([node.name isEqualToString:@"settingsButtonNode"]){
+        
+        musicButton = [self createMusicButtonNode];
+        quitButton = [self createQuitButton];
+        [self addChild: musicButton];
+        [self addChild: quitButton];
+        
+    } else if ([node.name isEqualToString:@"musicButtonNode"]){
+        if(_isPlayingMusic == NO){
+            [self setupSounds];
+            [self.backgroundMusic play];
+            _isPlayingMusic = YES;
+        } else {
+            [self.backgroundMusic stop];
+            _isPlayingMusic = NO;
+        }
+    }
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    SKAction *wait = [SKAction waitForDuration:5];
+    [self runAction:wait completion:^
+     { [quitButton removeFromParent];
+         [musicButton removeFromParent];}];
 }
 
 - (void) didBeginContact:(SKPhysicsContact *)contact {
@@ -202,6 +240,41 @@
     [EnemyFactory createDragonByChance:DragonSpawnChance inScene:self];
     
     [self addChild:enemy];
+}
+
+- (SKSpriteNode *)createSettingsButtonNode{
+    SKSpriteNode *settingsNode = [SKSpriteNode spriteNodeWithImageNamed:@"settings_icon@2x.png"];
+    settingsNode.position = CGPointMake(self.frame.size.width - 20,self.frame.size.height - 15);
+    settingsNode.size = CGSizeMake(self.frame.size.width/20, self.frame.size.width/20);
+    settingsNode.name = @"settingsButtonNode";//how the node is identified later
+    settingsNode.zPosition = 1.0;
+    return settingsNode;
+}
+
+- (SKSpriteNode *)createMusicButtonNode{
+    SKSpriteNode *musicNode = [SKSpriteNode spriteNodeWithImageNamed:@"music_icon@2x.png"];
+    musicNode.position = CGPointMake(self.frame.size.width - 50,self.frame.size.height - 15);
+    musicNode.size = CGSizeMake(self.frame.size.width/30, self.frame.size.width/30);
+    musicNode.name = @"musicButtonNode";
+    musicNode.zPosition = 1.0;
+    return musicNode;
+}
+
+- (SKSpriteNode *)createQuitButton{
+    SKSpriteNode *quitNode = [SKSpriteNode spriteNodeWithImageNamed:@"quit_icon@2x.png"];
+    quitNode.position = CGPointMake(self.frame.size.width - 80,self.frame.size.height - 15);
+    quitNode.size = CGSizeMake(self.frame.size.width/30, self.frame.size.width/30);
+    quitNode.name = @"quitButtonNode";
+    quitNode.zPosition = 1.0;
+    return quitNode;
+}
+
+- (void) setupSounds {
+    NSURL *backgroundMusicUrl = [[NSBundle mainBundle] URLForResource:@"BackgroundMusic" withExtension:@".mp3"];
+    
+    self.backgroundMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicUrl error:nil];
+    self.backgroundMusic.numberOfLoops = -1;
+    [self.backgroundMusic prepareToPlay];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
