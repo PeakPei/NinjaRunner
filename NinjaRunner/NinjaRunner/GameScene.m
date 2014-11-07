@@ -17,6 +17,7 @@
 #import "ChargingNode.h"
 #import "MonsterBullNode.h"
 #import "EnemyFactory.h"
+#import "HudNode.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface GameScene ()<SKPhysicsContactDelegate, UIGestureRecognizerDelegate>
@@ -85,6 +86,26 @@
     [self addEnemy];
     
     [self addChild: [self createSettingsButtonNode]];
+}
+
+- (void) endGame {
+    [self.view removeGestureRecognizer:tapRecognizer];
+    [self.view removeGestureRecognizer:longPressRecognizer];
+    [self.view removeGestureRecognizer:swipeUpRecognizer];
+    [self.view removeGestureRecognizer:swipeRightRecognizer];
+    
+    background.velocity = CGPointMake(0, 0);
+    [ninja die];
+    
+    [hud runAction:[SKAction fadeOutWithDuration:0.7]];
+    
+    SKLabelNode *endGameLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura-CondensedExtraBold"];
+    endGameLabel.text = [NSString stringWithFormat:@"%li", hud.score];
+    endGameLabel.fontColor = [SKColor orangeColor];
+    endGameLabel.fontSize = 50;
+    endGameLabel.alpha = 0.7;
+    endGameLabel.position = _center;
+    [self addChild:endGameLabel];
 }
 
 - (void) setupGestureRecognizers {
