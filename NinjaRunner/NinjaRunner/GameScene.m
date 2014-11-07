@@ -49,6 +49,7 @@
     
     SKSpriteNode *musicButton;
     SKSpriteNode *quitButton;
+    SKSpriteNode *rerunButton;
     
     NSString *bloodParticlesFilePath;
 }
@@ -86,6 +87,10 @@
     [self addEnemy];
     
     [self addChild: [self createSettingsButtonNode]];
+    
+    [self setupSounds];
+    [self.backgroundMusic play];
+    _isPlayingMusic = YES;
 }
 
 - (void) endGame {
@@ -179,8 +184,10 @@
     if ([node.name isEqualToString:@"settingsButtonNode"]){
         
         musicButton = [self createMusicButtonNode];
+        rerunButton = [self createRerunButtonNode];
         quitButton = [self createQuitButton];
         [self addChild: musicButton];
+        [self addChild: rerunButton];
         [self addChild: quitButton];
         
     } else if ([node.name isEqualToString:@"musicButtonNode"]){
@@ -192,14 +199,19 @@
             [self.backgroundMusic stop];
             _isPlayingMusic = NO;
         }
+    } else if ([node.name isEqualToString:@"rerunButtonNode"]){
+        //[self didMoveToView:self];
+    } else if([node.name isEqualToString:@"quitButtonNode"]){
+        
     }
 }
 
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    SKAction *wait = [SKAction waitForDuration:5];
+    SKAction *wait = [SKAction waitForDuration:3];
     [self runAction:wait completion:^
      { [quitButton removeFromParent];
-         [musicButton removeFromParent];}];
+         [musicButton removeFromParent];
+         [rerunButton removeFromParent];}];
 }
 
 - (void) didBeginContact:(SKPhysicsContact *)contact {
@@ -289,9 +301,18 @@
     return musicNode;
 }
 
+-(SKSpriteNode *)createRerunButtonNode{
+    SKSpriteNode *rerunNode = [SKSpriteNode spriteNodeWithImageNamed:@"rerun_icon@2x.png"];
+    rerunNode.position = CGPointMake(self.frame.size.width - 80,self.frame.size.height - 15);
+    rerunNode.size = CGSizeMake(self.frame.size.width/30, self.frame.size.width/30);
+    rerunNode.name = @"rerunButtonNode";
+    rerunNode.zPosition = 1.0;
+    return rerunNode;
+}
+
 - (SKSpriteNode *)createQuitButton{
     SKSpriteNode *quitNode = [SKSpriteNode spriteNodeWithImageNamed:@"quit_icon@2x.png"];
-    quitNode.position = CGPointMake(self.frame.size.width - 80,self.frame.size.height - 15);
+    quitNode.position = CGPointMake(self.frame.size.width - 110,self.frame.size.height - 15);
     quitNode.size = CGSizeMake(self.frame.size.width/30, self.frame.size.width/30);
     quitNode.name = @"quitButtonNode";
     quitNode.zPosition = 1.0;
