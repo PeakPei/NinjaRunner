@@ -12,6 +12,8 @@
 
 + (instancetype) backgroundAtPosition:(CGPoint)position parent:(SKScene *)parent;
 
+@property (nonatomic, assign) CGPoint velocity;
+
 - (void) moveByTimeSinceLastUpdate:(NSTimeInterval)timeSinceLastUpdate;
 
 @end

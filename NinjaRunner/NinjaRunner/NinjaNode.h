@@ -22,6 +22,7 @@ static NSString *NinjaJumpActionKey = @"Jump";
 
 - (void) jump;
 - (void) attack;
+- (void) die;
 - (void) chargeAttack;
 - (void) enablePowerAttack;
 

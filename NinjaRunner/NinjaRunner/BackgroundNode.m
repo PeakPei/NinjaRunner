@@ -17,6 +17,7 @@
     background.position = position;
     background.name = BackgroundName;
     background.zPosition = -1;
+    background.velocity = CGPointMake(BackgroundSpeed, 0);
     
     [background setImagesSetByScene:parent];
     
@@ -43,8 +44,7 @@
      {
          SKSpriteNode *backgroundSpriteNode = (SKSpriteNode *)node;
          
-         CGPoint bgVelocity = CGPointMake(BackgroundSpeed, 0);
-         CGPoint amountToMove = [VectorHelper multiplyPoint:bgVelocity byScalar:timeSinceLastUpdate];
+         CGPoint amountToMove = [VectorHelper multiplyPoint:_velocity byScalar:timeSinceLastUpdate];
          
          CGPoint newPosition = [VectorHelper addPoint:amountToMove toPoint:backgroundSpriteNode.position];
          backgroundSpriteNode.position = newPosition;

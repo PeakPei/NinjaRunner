@@ -44,6 +44,7 @@
     BackgroundNode *background;
     NinjaNode *ninja;
     ChargingNode *chargingNode;
+    HudNode *hud;
     
     SKSpriteNode *musicButton;
     SKSpriteNode *quitButton;
@@ -70,6 +71,9 @@
     
     SKSpriteNode *backgroundImage = (SKSpriteNode *)[background childNodeWithName:BackgroundSpriteName];
     _groundHeight = backgroundImage.size.height * BackgroundLandHeightPercent;
+    
+    hud = [HudNode hudAtPosition:CGPointMake(0, self.frame.size.height - 20) withFrame:self.frame];
+    [self addChild:hud];
     
     GroundNode *ground = [GroundNode groundWithSize:CGSizeMake(self.frame.size.width, _groundHeight)];
     [self addChild:ground];
@@ -190,7 +194,10 @@
     
     if (firstBody.categoryBitMask == CollisionCategoryEnemy
         && secondBody.categoryBitMask == CollisionCategoryNinja) {
-        NSLog(@"contact");
+        if (!_gameOver) {
+            [self endGame];
+        }
+        _gameOver = YES;
     }
 
     // Reset jumps count on ground touch
@@ -209,6 +216,7 @@
         
         if (enemy.health <= 0) {
             [enemy removeFromParent];
+            [hud addPoints:enemy.pointsForKill];
         }
         
         if (projectile.chargedEmitter != nil) {
