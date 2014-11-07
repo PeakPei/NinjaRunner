@@ -199,6 +199,7 @@
 - (void) addEnemy {
     EnemyType enemyType = (EnemyType)arc4random_uniform(2);
     EnemyNode *enemy = [EnemyFactory createEnemyWithType:enemyType inScene:self];
+    [EnemyFactory createDragonByChance:DragonSpawnChance inScene:self];
     
     [self addChild:enemy];
 }

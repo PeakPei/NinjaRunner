@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Util.h"
 #import "EnemyNode.h"
+#import "GameScene.h"
 
 @interface EnemyFactory : NSObject
 
-+ (EnemyNode *) createEnemyWithType:(EnemyType)type inScene:(SKScene *)scene;
++ (EnemyNode *) createEnemyWithType:(EnemyType)type inScene:(GameScene *)scene;
++ (void) createDragonByChance:(NSInteger)chance inScene:(GameScene *)scene;
 
 @end

@@ -12,9 +12,9 @@
 @implementation MonsterBullNode
 
 + (instancetype)monsterBullWithPosition:(CGPoint)position velocity:(CGVector)velocity health:(NSInteger)health pointsForKill:(NSInteger)points {
-    MonsterBullNode *monsterBull = [super enemyWithImageNamed:@"dragon_1" position:position velocity:velocity health:health pointsForKill:points];
-    monsterBull.xScale = 0.8;
-    monsterBull.yScale = 0.8;
+    MonsterBullNode *monsterBull = [super enemyWithImageNamed:@"monster_bull_1" position:position velocity:velocity health:health pointsForKill:points];
+    monsterBull.xScale = 1.9;
+    monsterBull.yScale = 1.9;
     
     NSArray *textures = @[[SKTexture textureWithImageNamed:@"monster_bull_1"],
                           [SKTexture textureWithImageNamed:@"monster_bull_2"],

@@ -106,7 +106,7 @@
         projectile.chargedEmitter = chargedProjectile;
     }
     
-    projectile.damage = _isCharged || _isPowerAttackEnabled ? self.damage * 2 : self.damage;
+    projectile.damage = _isCharged || _isPowerAttackEnabled ? self.damage * ChargeAttackDamageMultiplier : self.damage;
     _isCharged = NO;
     
     [self runAction:_attackAnimation];

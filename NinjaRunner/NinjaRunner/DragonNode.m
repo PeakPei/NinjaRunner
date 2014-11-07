@@ -28,4 +28,12 @@
     return dragon;
 }
 
+- (void) setupPhysicsBodyWithVelocity:(CGVector)velocity {
+    CGSize bodySize = CGSizeMake(self.frame.size.width * 0.5, self.frame.size.height);
+    CGPoint bodyCenter = CGPointMake(self.position.x - self.frame.size.width / 4, self.position.y);
+    
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bodySize center:bodyCenter];
+    [super setupPhysicsBodyPropertiesWithVelocity:velocity];
+}
+
 @end
