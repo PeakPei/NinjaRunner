@@ -34,6 +34,8 @@
 @property (nonatomic, assign) BOOL isPlayingMusic;
 @property (nonatomic) AVAudioPlayer *backgroundMusic;
 
+@property (nonatomic, assign) BOOL isPaused;
+
 @end
 
 @implementation GameScene {
@@ -41,6 +43,7 @@
     UISwipeGestureRecognizer *swipeRightRecognizer;
     UILongPressGestureRecognizer *longPressRecognizer;
     UITapGestureRecognizer *tapRecognizer;
+    
     
     BackgroundNode *background;
     NinjaNode *ninja;
@@ -50,6 +53,7 @@
     SKSpriteNode *musicButton;
     SKSpriteNode *quitButton;
     SKSpriteNode *rerunButton;
+    SKSpriteNode *pauseButton;
     
     NSString *bloodParticlesFilePath;
 }
@@ -60,6 +64,7 @@
     _timeSinceEnemyAdded = 0;
     _gameOver = NO;
     _isPlayingMusic = NO;
+    _isPaused = NO;
     
     bloodParticlesFilePath = [[NSBundle mainBundle] pathForResource:@"BloodParticles" ofType:@"sks"];
     [self setupGestureRecognizers];
@@ -87,6 +92,8 @@
     [self addEnemy];
     
     [self addChild: [self createSettingsButtonNode]];
+    
+    [self addChild: [self createPauseButton]];
     
     [self setupSounds];
     [self.backgroundMusic play];
@@ -201,8 +208,19 @@
         }
     } else if ([node.name isEqualToString:@"rerunButtonNode"]){
         //[self didMoveToView:self];
-    } else if([node.name isEqualToString:@"quitButtonNode"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MyNotification" object:self];
         
+        //I'll add a notification here
+    } else if([node.name isEqualToString:@"quitButtonNode"]){
+        //I'll add one more notification here
+    } else if([node.name isEqualToString:@"pauseButtonNode"]){
+        if(_isPaused == NO){
+            self.scene.view.paused = YES;
+            _isPaused = YES;
+        } else{
+            self.scene.view.paused = NO;
+            _isPaused = NO;
+        }
     }
 }
 
@@ -211,7 +229,8 @@
     [self runAction:wait completion:^
      { [quitButton removeFromParent];
          [musicButton removeFromParent];
-         [rerunButton removeFromParent];}];
+         [rerunButton removeFromParent];
+         [pauseButton removeFromParent];}];
 }
 
 - (void) didBeginContact:(SKPhysicsContact *)contact {
@@ -317,6 +336,15 @@
     quitNode.name = @"quitButtonNode";
     quitNode.zPosition = 1.0;
     return quitNode;
+}
+
+- (SKSpriteNode *) createPauseButton{
+    SKSpriteNode *pauseNode = [SKSpriteNode spriteNodeWithImageNamed:@"pause_icon@2x.png"];
+    pauseNode.position = CGPointMake(20, 20);
+    pauseNode.size = CGSizeMake(self.frame.size.width/30, self.frame.size.width/30);
+    pauseNode.name = @"pauseButtonNode";
+    pauseNode.zPosition = 1.0;
+    return pauseNode;
 }
 
 - (void) setupSounds {
